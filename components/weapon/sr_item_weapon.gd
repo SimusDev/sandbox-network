@@ -48,7 +48,7 @@ func _play_sound() -> void:
 	weapon.sound_fire.play_locally(self)
 
 func _spawn_bullet() -> void:
-	var bullet = level.instantiate(weapon.projectile)
+	var bullet = level.instantiate_local(weapon.projectile)
 	bullet.owner.entity = entity
 	bullet.spawn()
 	bullet.set_global_position(entity)
