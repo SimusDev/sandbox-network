@@ -18,7 +18,15 @@ func _ready() -> void:
 	_fire_timer.one_shot = true
 	add_child(_fire_timer)
 
-func _process(delta: float) -> void:
+func _input(event: InputEvent) -> void:
+	super(event)
+	if event.is_action_pressed(&"item_inspect"):
+		event_inspect.emit()
+	elif event.is_action_pressed(&"weapon_reload"):
+		event_reload.emit()
+
+
+func _process(_delta: float) -> void:
 	if is_using:
 		fire()
 
@@ -26,11 +34,20 @@ func fire() -> void:
 	if _fire_timer.time_left > 0:
 		return
 	
+	_play_sound()
 	_spawn_bullet()
 	
 	event_fire.emit()
 	
 	_fire_timer.start(weapon.get_fire_delay())
 
+func _play_sound() -> void:
+	var p = AudioStreamPlayer3D.new()
+	add_child(p)
+	p.stream = load("res://audio/weapon/ak47/fire_0.mp3")
+	p.finished.connect(p.queue_free)
+	p.pitch_scale = randf_range(0.90, 1.05)
+	p.play()
+
 func _spawn_bullet() -> void:
-	pass
+	weapon.projectile.prefab
