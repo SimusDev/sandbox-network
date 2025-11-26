@@ -1,5 +1,5 @@
-extends Node3D
 class_name SR_Item
+extends Node3D
 
 @export var object: R_WorldObject
 @export var use_cooldown: float = 0.0
@@ -23,6 +23,11 @@ func _ready() -> void:
 	set_process_input(SD_Network.is_authority(self))
 
 func _input(event: InputEvent) -> void:
+	if SimusDev.ui.has_active_interface():
+		is_using = false
+		return
+	
+	
 	if event.is_action_pressed("item_use"):
 		request_press()
 	

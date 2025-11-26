@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://hc4jbtcudnyd"]
+[gd_scene load_steps=4 format=3 uid="uid://hc4jbtcudnyd"]
 
 [ext_resource type="Script" uid="uid://c4stpbccvcyvd" path="res://components/projectile/sr_projectile.gd" id="1_ponba"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ponba"]
+emission_enabled = true
+emission = Color(1, 1, 0.32941177, 1)
+emission_energy_multiplier = 3.45
+
 [sub_resource type="BoxMesh" id="BoxMesh_8t3yg"]
-size = Vector3(0.2, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_ponba")
+size = Vector3(0.045, 0.045, 0.295)
 
 [node name="SR_Projectile3D" type="Node3D" unique_id=374354375]
 script = ExtResource("1_ponba")

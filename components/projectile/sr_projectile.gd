@@ -6,9 +6,9 @@ signal impact
 @export var drag_force:float = 0.5
 
 var entity:Node3D
-#@export var projectile_object:R_Projectile
+
 var damage:float = 55.0
-var speed:float = 20.0
+var speed:float = 240.0
 var max_distance:float = 1000.0
 
 var bullet_fly_direction:Vector3
@@ -20,7 +20,7 @@ var health:float = 100.0
 var is_hit:bool = false
 
 func _ready() -> void:
-	bullet_fly_direction = -entity.global_transform.basis.z.normalized()
+	#bullet_fly_direction = -entity.global_transform.basis.z.normalized()
 	current_velocity = bullet_fly_direction * speed
 	#speed = projectile_object.speed
 	#damage = projectile_object.damage
