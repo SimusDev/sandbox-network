@@ -9,12 +9,15 @@ var _fire_timer: Timer
 
 var weapon: R_Weapon
 
+@export var entity:Node3D
+
 func _ready() -> void:
 	super()
 	
 	weapon = object as R_Weapon
 	
 	_fire_timer = Timer.new()
+	_fire_timer.process_callback = Timer.TIMER_PROCESS_PHYSICS
 	_fire_timer.one_shot = true
 	add_child(_fire_timer)
 
@@ -50,4 +53,8 @@ func _play_sound() -> void:
 	p.play()
 
 func _spawn_bullet() -> void:
-	weapon.projectile.prefab
+	var bullet = level.instantiate(weapon.projectile)
+	bullet.owner.entity = entity
+	bullet.spawn()
+	bullet.set_global_position(entity)
+	

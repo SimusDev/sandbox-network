@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="R_Projectile" load_steps=2 format=3 uid="uid://bbiwfc1ysehud"]
+[gd_resource type="Resource" script_class="R_Projectile" load_steps=3 format=3 uid="uid://bbiwfc1ysehud"]
 
 [ext_resource type="Script" uid="uid://blvbh1pg55yip" path="res://components/projectile/r_projectile.gd" id="1_jucaj"]
+[ext_resource type="PackedScene" uid="uid://hc4jbtcudnyd" path="res://prefabs/projectiles/sr_projectile_3d.tscn" id="1_uhiwj"]
 
 [resource]
 script = ExtResource("1_jucaj")
+prefab = ExtResource("1_uhiwj")
 metadata/_custom_type_script = "uid://blvbh1pg55yip"

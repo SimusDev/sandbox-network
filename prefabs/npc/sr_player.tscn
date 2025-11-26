@@ -94,9 +94,11 @@ allow_serialize = false
 _editor_initialize = true
 metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
-[node name="gun" type="Node3D" parent="Camera" index="2" unique_id=181193917]
+[node name="gun" type="Node3D" parent="Camera" index="2" unique_id=181193917 node_paths=PackedStringArray("entity")]
 script = ExtResource("7_kn4em")
 object = ExtResource("8_2fc7s")
+use_cooldown = null
+entity = NodePath("../..")
 metadata/_custom_type_script = "uid://doewumcc5625k"
 
 [node name="Sketchfab_Scene4" parent="Camera/gun" index="0" unique_id=1555753663 instance=ExtResource("9_br5eg")]
