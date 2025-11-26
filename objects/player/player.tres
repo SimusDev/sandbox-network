@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="R_Player" load_steps=3 format=3 uid="uid://dphwrwg1hg068"]
+
+[ext_resource type="PackedScene" uid="uid://dk45eqctyampm" path="res://prefabs/npc/sr_player.tscn" id="1_dkf0r"]
+[ext_resource type="Script" uid="uid://w25xf83jfreb" path="res://components/player/r_player.gd" id="1_ygh2m"]
+
+[resource]
+script = ExtResource("1_ygh2m")
+prefab = ExtResource("1_dkf0r")
+metadata/_custom_type_script = "uid://w25xf83jfreb"

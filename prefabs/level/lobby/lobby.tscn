@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjudw6u85253o"]
+
+[ext_resource type="Texture2D" uid="uid://bu7otfqxvfvmi" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="2_5o1jg"]
+[ext_resource type="PackedScene" uid="uid://byj76k452xx7v" path="res://ui/lobby/lobby.tscn" id="2_7hv5o"]
+[ext_resource type="Script" uid="uid://q5tba8186x87" path="res://components/network/SR_NetworkSpawner.gd" id="4_hajq1"]
+[ext_resource type="Script" uid="uid://7x2il2vfpoep" path="res://addons/simusdev/network/SD_NetworkPlayerSpawner.gd" id="5_om08d"]
+[ext_resource type="Script" uid="uid://c0a2s5sygd3t4" path="res://components/level/SR_PlayerSpawn3D.gd" id="6_hajq1"]
+[ext_resource type="PackedScene" uid="uid://dk45eqctyampm" path="res://prefabs/npc/sr_player.tscn" id="6_m6l4q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7hv5o"]
+albedo_texture = ExtResource("2_5o1jg")
+uv1_triplanar = true
+
+[node name="Lobby" type="Node3D" unique_id=1062069025]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=516542928]
+use_collision = true
+size = Vector3(50, 0.1, 50)
+material = SubResource("StandardMaterial3D_7hv5o")
+
+[node name="spawn" type="Node3D" parent="." unique_id=1695686573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4918032, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1296265776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9882665, 0)
+
+[node name="Lobby" parent="." unique_id=632172441 instance=ExtResource("2_7hv5o")]
+visible = false
+
+[node name="SR_PlayerSpawn3D" type="Node3D" parent="." unique_id=720200703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4398079, 0)
+script = ExtResource("6_hajq1")
+metadata/_custom_type_script = "uid://c0a2s5sygd3t4"
+
+[node name="SR_NetworkSpawner" type="Node" parent="." unique_id=1039477765]
+script = ExtResource("4_hajq1")
+metadata/_custom_type_script = "uid://q5tba8186x87"
+
+[node name="SD_NetworkPlayerSpawner" type="Node" parent="." unique_id=1050540959 node_paths=PackedStringArray("root", "spawnpoints")]
+script = ExtResource("5_om08d")
+root = NodePath("../SR_PlayerSpawn3D")
+scenes = Array[PackedScene]([ExtResource("6_m6l4q")])
+spawnpoints = [NodePath("../SR_PlayerSpawn3D")]
+metadata/_custom_type_script = "uid://7x2il2vfpoep"

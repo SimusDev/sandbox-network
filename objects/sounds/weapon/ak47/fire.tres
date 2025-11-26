@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="R_Sound3D" load_steps=2 format=3 uid="uid://blyqwyt4pvbph"]
+
+[ext_resource type="Script" uid="uid://otcno374t1sp" path="res://components/sound/r_sound3d.gd" id="1_0p8oa"]
+
+[resource]
+script = ExtResource("1_0p8oa")
+metadata/_custom_type_script = "uid://otcno374t1sp"

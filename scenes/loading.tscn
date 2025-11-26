@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3u4lormvp8fe"]
+
+[ext_resource type="Script" uid="uid://c0ournfo642ws" path="res://components/object/sr_object_handler.gd" id="1_ir5ef"]
+[ext_resource type="Script" uid="uid://nha2yixmxkma" path="res://scenes/loading.gd" id="1_yc7uc"]
+
+[node name="Menu" type="CanvasLayer" unique_id=1103615679]
+script = ExtResource("1_yc7uc")
+
+[node name="SR_ObjectHandler" type="Node" parent="." unique_id=120718024]
+script = ExtResource("1_ir5ef")
+paths = Array[String](["res://objects"])
+unload_on_free = false
+metadata/_custom_type_script = "uid://c0ournfo642ws"

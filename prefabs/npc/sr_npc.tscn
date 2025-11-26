@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://n1vwd8f0lue8"]
+
+[ext_resource type="Script" uid="uid://fupvm6bqajfs" path="res://addons/simusdev/components/health/W_EntityHealth.gd" id="2_2yu44"]
+[ext_resource type="Script" uid="uid://d4b7qcp2luu8b" path="res://components/entity/sr_living_entity.gd" id="2_7c0b8"]
+
+[node name="SR_Npc" type="CharacterBody3D" unique_id=1194893380]
+
+[node name="SR_LivingEntity" type="Node" parent="." unique_id=123198333 node_paths=PackedStringArray("root")]
+script = ExtResource("2_7c0b8")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://d4b7qcp2luu8b"
+
+[node name="W_EntityHealth" type="Node" parent="." unique_id=982411964 node_paths=PackedStringArray("target")]
+script = ExtResource("2_2yu44")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://fupvm6bqajfs"

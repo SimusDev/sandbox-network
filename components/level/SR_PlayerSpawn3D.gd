@@ -1,0 +1,2 @@
+extends Node3D
+class_name SR_PlayerSpawn3D

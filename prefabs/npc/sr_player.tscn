@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://dk45eqctyampm"]
+
+[ext_resource type="PackedScene" uid="uid://t62b665bvj0s" path="res://prefabs/npc/sr_stalker.tscn" id="1_6y6mw"]
+[ext_resource type="Script" uid="uid://dylvk0a6ks12x" path="res://components/player/SR_Playable.gd" id="2_fc3xa"]
+[ext_resource type="PackedScene" uid="uid://be7h2lkvpihn3" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeMovement.tscn" id="3_m58q1"]
+[ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="4_3611e"]
+[ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="5_3611e"]
+[ext_resource type="Script" uid="uid://cnl3gha0ra746" path="res://addons/simusdev/network/SD_NetPositionSynchronizer.gd" id="6_vv6yp"]
+[ext_resource type="Script" uid="uid://doewumcc5625k" path="res://components/weapon/sr_item_weapon.gd" id="7_kn4em"]
+[ext_resource type="Resource" uid="uid://ls55oo7ysu22" path="res://objects/weapons/ak47.tres" id="8_2fc7s"]
+[ext_resource type="PackedScene" uid="uid://dgriur3thykid" path="res://models/weapon/ak47/ak47.tscn" id="9_br5eg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6y6mw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3611e"]
+size = Vector3(1, 1.9902649, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vv6yp"]
+size = Vector3(1, 1.0805817, 1)
+
+[node name="SR_Player" unique_id=1194893380 instance=ExtResource("1_6y6mw")]
+collision_layer = 0
+
+[node name="playable" type="Node" parent="." index="0" unique_id=1187433176 node_paths=PackedStringArray("root")]
+script = ExtResource("2_fc3xa")
+root = NodePath("..")
+metadata/_custom_type_script = "uid://dylvk0a6ks12x"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=1417165171]
+mesh = SubResource("CapsuleMesh_6y6mw")
+
+[node name="collision_normal" type="CollisionShape3D" parent="." index="2" unique_id=1827877323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001083374, 0)
+shape = SubResource("BoxShape3D_3611e")
+
+[node name="collision_crouch" type="CollisionShape3D" parent="." index="3" unique_id=933330022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45375824, 0)
+shape = SubResource("BoxShape3D_vv6yp")
+
+[node name="Movement" parent="." index="4" unique_id=1719251359 node_paths=PackedStringArray("actor") instance=ExtResource("3_m58q1")]
+actor = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_jump = "jump"
+key_sprint = "sprint"
+key_crouch = "crouch"
+
+[node name="Crouch" parent="." index="5" unique_id=1200781697 node_paths=PackedStringArray("camera", "movement", "collision_normal", "collision_crouch", "ceiling_detection", "crouch_camera_position") instance=ExtResource("4_3611e")]
+camera = NodePath("../Camera")
+movement = NodePath("../Movement")
+collision_normal = NodePath("../collision_normal")
+collision_crouch = NodePath("../collision_crouch")
+ceiling_detection = NodePath("../ceilling_detection")
+crouch_camera_position = NodePath("../crouch_pos")
+
+[node name="Camera" parent="." index="6" unique_id=1742899825 node_paths=PackedStringArray("body") instance=ExtResource("5_3611e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90994805, 0)
+body = NodePath("..")
+key_forward = "move_forward"
+key_backward = "move_backward"
+key_left = "move_left"
+key_right = "move_right"
+key_boost = "sprint"
+key_slowdown = "crouch"
+
+[node name="sync" type="Node" parent="Camera" index="1" unique_id=451001271 node_paths=PackedStringArray("node")]
+script = ExtResource("6_vv6yp")
+node = NodePath("..")
+interpolation = true
+synchronize = Dictionary[StringName, bool]({
+&"position": true,
+&"rotation": true,
+&"scale": true
+})
+channel = &"position"
+tickrate = 32.0
+transfer_mode = 0
+allow_serialize = false
+_editor_initialize = true
+metadata/_custom_type_script = "uid://cnl3gha0ra746"
+
+[node name="gun" type="Node3D" parent="Camera" index="2" unique_id=181193917]
+script = ExtResource("7_kn4em")
+object = ExtResource("8_2fc7s")
+metadata/_custom_type_script = "uid://doewumcc5625k"
+
+[node name="Sketchfab_Scene4" parent="Camera/gun" index="0" unique_id=1555753663 instance=ExtResource("9_br5eg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.085, -0.225, 0)
+
+[node name="crouch_pos" type="Node3D" parent="." index="7" unique_id=2117828044]
+
+[node name="ceilling_detection" type="RayCast3D" parent="." index="8" unique_id=675193938]
+target_position = Vector3(0, 1, 0)
+
+[editable path="Camera"]

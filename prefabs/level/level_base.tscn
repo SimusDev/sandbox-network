@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cerh8ahldbw0c"]
+
+[ext_resource type="Script" uid="uid://cl601twkjgpo2" path="res://components/level/SR_Level3D.gd" id="1_jwl4x"]
+[ext_resource type="Script" uid="uid://q5tba8186x87" path="res://components/network/SR_NetworkSpawner.gd" id="2_87vmp"]
+
+[node name="LevelBase" type="Node3D" unique_id=651433847 node_paths=PackedStringArray("_spawner")]
+script = ExtResource("1_jwl4x")
+_spawner = NodePath("Spawner")
+metadata/_custom_type_script = "uid://cl601twkjgpo2"
+
+[node name="Spawner" type="Node" parent="." unique_id=777711215]
+script = ExtResource("2_87vmp")
+metadata/_custom_type_script = "uid://q5tba8186x87"
+
+[node name="Prefabs" type="Node3D" parent="." unique_id=1285453469]

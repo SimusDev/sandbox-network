@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="R_Level3D" load_steps=3 format=3 uid="uid://wj7h2oabcoh3"]
+
+[ext_resource type="Script" uid="uid://cxeou8qwnyoh4" path="res://components/level/R_Level3D.gd" id="1_1l1rb"]
+[ext_resource type="PackedScene" uid="uid://bjudw6u85253o" path="res://prefabs/level/lobby/lobby.tscn" id="1_shofr"]
+
+[resource]
+script = ExtResource("1_1l1rb")
+visible = false
+name = &"lobby"
+prefabs = Array[PackedScene]([ExtResource("1_shofr")])
+metadata/_custom_type_script = "uid://cxeou8qwnyoh4"

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="R_Faction" load_steps=2 format=3 uid="uid://dx50ssp74o2pb"]
+
+[ext_resource type="Script" uid="uid://csqinxb5wkekx" path="res://components/factions/r_faction.gd" id="1_rkkxt"]
+
+[resource]
+script = ExtResource("1_rkkxt")
+metadata/_custom_type_script = "uid://csqinxb5wkekx"
