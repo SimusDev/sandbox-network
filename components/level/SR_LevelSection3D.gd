@@ -11,6 +11,7 @@ func get_local() -> SR_LevelSection3D:
 	return _level._sections.get("l_" + name)
 
 func set_networked(value: bool) -> void:
+	networked = value
 	if is_instance_valid(_level):
 		if value:
 			_level.get_spawner().register(self)
