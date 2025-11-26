@@ -11,3 +11,49 @@ script = ExtResource("1_ir5ef")
 paths = Array[String](["res://objects"])
 unload_on_free = false
 metadata/_custom_type_script = "uid://c0ournfo642ws"
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=2031169081]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = -33.0
+offset_right = 284.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "localhost"
+placeholder_text = "IP"
+
+[node name="host" type="Button" parent="." unique_id=691051363]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = -92.0
+offset_right = 284.5
+offset_bottom = -43.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "HOST"
+
+[node name="connect" type="Button" parent="." unique_id=1738797234]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -284.5
+offset_top = 29.0
+offset_right = 284.5
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONNECT"
+
+[connection signal="pressed" from="host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="connect" to="." method="_on_connect_pressed"]
