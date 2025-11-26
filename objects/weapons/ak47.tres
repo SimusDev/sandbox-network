@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="R_Weapon" load_steps=2 format=3 uid="uid://ls55oo7ysu22"]
+[gd_resource type="Resource" script_class="R_Weapon" load_steps=3 format=3 uid="uid://ls55oo7ysu22"]
 
+[ext_resource type="Texture2D" uid="uid://cyvdhm4snb8qj" path="res://addons/simusdev/icons/Timer.svg" id="1_h1ova"]
 [ext_resource type="Script" uid="uid://btheenv6x1p6b" path="res://components/weapon/r_weapon.gd" id="1_ifyfa"]
 
 [resource]
 script = ExtResource("1_ifyfa")
+icon = ExtResource("1_h1ova")
 metadata/_custom_type_script = "uid://btheenv6x1p6b"
