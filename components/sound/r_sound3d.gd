@@ -30,5 +30,6 @@ func try_create_source(position: Variant) -> SR_SoundSource3D:
 func play_locally(position: Variant) -> SR_SoundSource3D:
 	var sound: SR_SoundSource3D = try_create_source(position)
 	if sound:
-		SR_GameWorld3D.instance.add_child.call_deferred(sound)
+		SR_GameWorld3D.instance.add_child(sound)
+		sound.global_position = SR_GameWorld3D.get_position_or_node3d_position_globally(position)
 	return sound
