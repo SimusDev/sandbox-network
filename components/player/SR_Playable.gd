@@ -14,6 +14,9 @@ func _ready() -> void:
 
 #test govna. remove this method next time
 func _on_commands_on_executed(command: SD_ConsoleCommand) -> void:
+	if !SD_Network.is_authority(self):
+		return
+	
 	match command.get_code():
 		"level.spawn":
 			var object: R_Object = R_Object.find_by_id(command.get_value_as_string())

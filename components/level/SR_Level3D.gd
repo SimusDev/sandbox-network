@@ -52,6 +52,7 @@ func find_section_by_object(object: R_WorldObject) -> SR_LevelSection3D:
 
 func _create_instance(object: R_WorldObject, local: bool = false) -> I_ObjectInstance:
 	if not SD_Network.is_server() and local == false:
+		SD_Console.i().write_from_object(self, "cant instantiate globally on client! %s" % [object.resource_path], SD_ConsoleCategories.ERROR)
 		return
 	
 	var instance: I_ObjectInstance = I_ObjectInstance.new()
