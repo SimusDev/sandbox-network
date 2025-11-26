@@ -4,6 +4,8 @@ class_name R_Weapon
 @export var projectile: R_Projectile
 @export var fire_rate_rpm: float = 600.0
 
+@export var sound_fire: R_Sound3D
+
 func get_fire_delay() -> float:
 	return 60.0 / fire_rate_rpm
 

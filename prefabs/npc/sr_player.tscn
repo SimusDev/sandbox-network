@@ -104,14 +104,6 @@ metadata/_custom_type_script = "uid://doewumcc5625k"
 [node name="Sketchfab_Scene4" parent="Camera/gun" index="0" unique_id=1555753663 instance=ExtResource("9_br5eg")]
 transform = Transform3D(0.9953962, 0, -0.09584575, 0, 1, 0, 0.09584575, 0, 0.9953962, 0.135, -0.295, 0)
 
-[node name="Skeleton3D" parent="Camera/gun/Sketchfab_Scene4/Sketchfab_model/cf590c7c3e014b99a3a426d56e23488a_fbx/Object_2/RootNode/hud_skelet/Object_5" parent_id_path=PackedInt32Array(1555753663, 718541203) index="0" unique_id=441604500]
-bones/23/rotation = Quaternion(-0.14129587, -0.14173374, 0.25940707, 0.9448043)
-bones/30/rotation = Quaternion(0.03222429, -0.00089670916, 0.092966385, 0.99514735)
-bones/31/rotation = Quaternion(-0.5660926, 1.0619908e-06, 7.038516e-07, 0.8243417)
-bones/32/rotation = Quaternion(-0.47381467, -0.0107907485, -0.016061168, 0.8804121)
-bones/50/rotation = Quaternion(0.3916791, 0.62814105, 0.5496579, -0.38717243)
-bones/53/rotation = Quaternion(-0.26676643, 7.962656e-07, 1.4205227e-07, 0.9637612)
-
 [node name="crouch_pos" type="Node3D" parent="." index="8" unique_id=2117828044]
 
 [node name="ceilling_detection" type="RayCast3D" parent="." index="9" unique_id=675193938]

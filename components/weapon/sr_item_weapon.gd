@@ -45,12 +45,8 @@ func fire() -> void:
 	_fire_timer.start(weapon.get_fire_delay())
 
 func _play_sound() -> void:
-	var p = AudioStreamPlayer3D.new()
-	add_child(p)
-	p.stream = load("res://audio/weapon/ak47/fire_0.mp3")
-	p.finished.connect(p.queue_free)
-	p.pitch_scale = randf_range(0.90, 1.05)
-	p.play()
+	weapon.sound_fire.play_locally(self)
+	
 
 func _spawn_bullet() -> void:
 	var bullet = level.instantiate(weapon.projectile)

@@ -9,6 +9,7 @@ class_name R_SoundPack3D
 @export var pitch_max: float = 1.0
 @export var min_distance: float = 0.0
 @export var max_distance: float = 0.0
+@export var volume: float = 1.0
 
 func try_create(global_position: Vector3) -> AudioStreamPlayer3D:
 	var camera: Camera3D = SR_GameWorld3D.try_get_active_camera3d()
@@ -24,10 +25,12 @@ func try_create(global_position: Vector3) -> AudioStreamPlayer3D:
 			return
 	
 	var audio := AudioStreamPlayer3D.new()
+	audio.stream = streams.pick_random()
 	audio.bus = bus
 	audio.unit_size = unit_size
 	audio.max_db = max_db
 	audio.max_distance = max_distance
 	audio.pitch_scale = SD_Random.get_rfloat_range(pitch_min, pitch_max)
-	
+	audio.autoplay = true
+	audio.volume_linear = volume
 	return audio

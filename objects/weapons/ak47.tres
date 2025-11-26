@@ -1,11 +1,17 @@
-[gd_resource type="Resource" script_class="R_Weapon" load_steps=4 format=3 uid="uid://ls55oo7ysu22"]
+[gd_resource type="Resource" script_class="R_Weapon" load_steps=6 format=3 uid="uid://ls55oo7ysu22"]
 
 [ext_resource type="Texture2D" uid="uid://cyvdhm4snb8qj" path="res://addons/simusdev/icons/Timer.svg" id="1_h1ova"]
 [ext_resource type="Script" uid="uid://btheenv6x1p6b" path="res://components/weapon/r_weapon.gd" id="1_ifyfa"]
-[ext_resource type="Resource" uid="uid://bbiwfc1ysehud" path="res://objects/projectiles/rifle_projectile.tres" id="2_wiw74"]
+[ext_resource type="Script" uid="uid://blvbh1pg55yip" path="res://components/projectile/r_projectile.gd" id="2_wiw74"]
+[ext_resource type="Resource" uid="uid://blyqwyt4pvbph" path="res://objects/sounds/weapon/ak47/ak47_fire.tres" id="4_g0kjg"]
+
+[sub_resource type="Resource" id="Resource_g0kjg"]
+script = ExtResource("2_wiw74")
+metadata/_custom_type_script = "uid://blvbh1pg55yip"
 
 [resource]
 script = ExtResource("1_ifyfa")
-projectile = ExtResource("2_wiw74")
+projectile = SubResource("Resource_g0kjg")
+sound_fire = ExtResource("4_g0kjg")
 icon = ExtResource("1_h1ova")
 metadata/_custom_type_script = "uid://btheenv6x1p6b"
