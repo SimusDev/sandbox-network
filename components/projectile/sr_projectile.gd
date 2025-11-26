@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		
 		if health <= 0.0:
 			_destroy()
-
+	
 	global_position = new_pos
 	if total_distance > max_distance:
 		_destroy()

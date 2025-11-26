@@ -46,7 +46,6 @@ func fire() -> void:
 
 func _play_sound() -> void:
 	weapon.sound_fire.play_locally(self)
-	
 
 func _spawn_bullet() -> void:
 	var bullet = level.instantiate(weapon.projectile)
