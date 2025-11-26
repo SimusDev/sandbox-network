@@ -4,6 +4,8 @@ class_name I_ObjectInstance
 var object: R_WorldObject
 var owner: Object
 
+var parent: Object
+
 func set_in(object: Object) -> void:
 	if owner:
 		return
@@ -29,3 +31,20 @@ static func deserialize(serialized: Array, object: Object = null) -> I_ObjectIns
 		instance.set_in(object)
 	
 	return instance
+
+func spawn() -> I_ObjectInstance:
+	parent.add_child(owner)
+	return self
+
+func despawn() -> I_ObjectInstance:
+	owner.queue_free()
+	return self
+
+func set_global_position(position: Variant) -> void:
+	if owner is Node3D:
+		owner.global_position = SR_GameWorld3D.get_position_or_node3d_position_globally(position)
+
+func get_global_position() -> Vector3:
+	if owner is Node3D:
+		return owner.global_position
+	return Vector3.ZERO

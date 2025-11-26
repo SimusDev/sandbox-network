@@ -58,7 +58,8 @@ func _ready() -> void:
 	SD_Network.register_rpc_any_peer(_recive_property, transfer_mode, channel)
 	#SD_Network.register_function(_recive_property)
 	
-	_check_property_changes()
+	if get_multiplayer_authority() == SD_Network.get_unique_id():
+		_check_property_changes()
 
 func _check_property_changes() -> void:
 	if not SD_Network.is_authority(self):

@@ -7,6 +7,9 @@ var _list: Dictionary
 
 var networked: bool = true : set = set_networked
 
+func get_local() -> SR_LevelSection3D:
+	return _level._sections.get("l_" + name)
+
 func set_networked(value: bool) -> void:
 	if is_instance_valid(_level):
 		if value:

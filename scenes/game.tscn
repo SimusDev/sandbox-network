@@ -1,52 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bibivk1ja0l6h"]
+[gd_scene load_steps=6 format=3 uid="uid://bibivk1ja0l6h"]
 
 [ext_resource type="Script" uid="uid://blb6wpk3rh5aw" path="res://components/player/s_player_auth.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://dm6dh5akdeuxm" path="res://components/environment/sr_environment.tscn" id="1_lnu2h"]
+[ext_resource type="Script" uid="uid://de4jqv4yxtgva" path="res://components/game_world.gd" id="1_p57ef"]
 [ext_resource type="Script" uid="uid://gjjf8sauvp33" path="res://components/level/SR_LevelHandler.gd" id="1_uwrxv"]
 [ext_resource type="Resource" uid="uid://wj7h2oabcoh3" path="res://levels/lobby.tres" id="2_yqjtg"]
-[ext_resource type="Script" uid="uid://cnl3gha0ra746" path="res://addons/simusdev/network/SD_NetPositionSynchronizer.gd" id="4_lbhrr"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_iywne"]
-
-[sub_resource type="Animation" id="Animation_lbhrr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 9.301466, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_iywne"]
-resource_name = "idle"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 9.301466, 0), Vector3(0, 12, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p57ef"]
-_data = {
-&"RESET": SubResource("Animation_lbhrr"),
-&"idle": SubResource("Animation_iywne")
-}
 
 [node name="Game" type="Node3D" unique_id=2039344107]
+script = ExtResource("1_p57ef")
 
 [node name="Singletons" type="Node" parent="." unique_id=2073239464]
 
@@ -61,20 +22,3 @@ script = ExtResource("1_uwrxv")
 levels_path = "res://levels"
 _lobby = ExtResource("2_yqjtg")
 metadata/_custom_type_script = "uid://gjjf8sauvp33"
-
-[node name="test_object" type="MeshInstance3D" parent="." unique_id=993817732]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.301466, 0)
-mesh = SubResource("BoxMesh_iywne")
-
-[node name="sync" type="Node" parent="test_object" unique_id=1875906011 node_paths=PackedStringArray("node")]
-process_mode = 4
-script = ExtResource("4_lbhrr")
-node = NodePath("..")
-tickrate = 64.0
-metadata/_custom_type_script = "uid://cnl3gha0ra746"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="test_object" unique_id=107672758]
-libraries = {
-&"": SubResource("AnimationLibrary_p57ef")
-}
-autoplay = &"idle"
