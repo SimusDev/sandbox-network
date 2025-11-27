@@ -48,3 +48,12 @@ func get_global_position() -> Vector3:
 	if owner is Node3D:
 		return owner.global_position
 	return Vector3.ZERO
+
+func set_global_rotation(rotation: Variant) -> void:
+	if owner is Node3D:
+		owner.global_rotation = SR_GameWorld3D.get_rotation_or_node3d_rotation_globally(rotation)
+
+func get_global_rotation() -> Vector3:
+	if owner is Node3D:
+		return owner.global_rotation
+	return Vector3.ZERO

@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="godot4.6"
+config/name="SandboxNetwork"
 run/main_scene="uid://c3u4lormvp8fe"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://doynt3owgl3bc"
 
 [autoload]
 

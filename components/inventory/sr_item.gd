@@ -1,5 +1,5 @@
-extends Node3D
 class_name SR_Item
+extends Node3D
 
 @export var object: R_WorldObject
 @export var use_cooldown: float = 0.0
@@ -36,6 +36,7 @@ func _ready() -> void:
 	network = SD_NetworkFunctionCaller.new("item")
 	
 	_item_ready()
+
 
 func _on_state_enter(state: SD_FiniteState) -> void:
 	pass

@@ -15,5 +15,14 @@ static func get_position_or_node3d_position_globally(from: Variant) -> Vector3:
 		return from
 	return Vector3()
 
+static func get_rotation_or_node3d_rotation_globally(from: Variant) -> Vector3:
+	if is_instance_valid(from): 
+		if "global_rotation" in from:
+			return from.global_rotation
+	
+	elif from is Vector3:
+		return from
+	return Vector3()
+
 static func try_get_active_camera3d() -> Camera3D:
 	return SimusDev.get_tree().root.get_camera_3d()
