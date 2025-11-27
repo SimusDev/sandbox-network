@@ -94,8 +94,16 @@ func _play_sound() -> void:
 	weapon.sound_fire.play_locally_attached(self)
 
 func _spawn_bullet() -> void:
+	var camera:W_FPCSourceLikeCamera = SD_Components.find_first(entity, W_FPCSourceLikeCamera)
 	var bullet = level.instantiate_local(weapon.projectile)
 	bullet.owner.entity = entity
+	bullet.owner.speed = weapon.projectile.speed
+	bullet.owner.damage = weapon.projectile.damage
+	bullet.owner.max_distance = weapon.projectile.max_distance
+	bullet.owner.bullet_fly_direction = -camera.global_transform.basis.z.normalized()
 	bullet.spawn()
-	bullet.set_global_position(entity)
 	
+	
+	
+	bullet.set_global_position(camera)
+	bullet.set_global_rotation(camera)
