@@ -7,5 +7,6 @@
 [resource]
 script = ExtResource("2_wiw74")
 projectile = ExtResource("1_wiw74")
+reload_time = 4.0
 sound_fire = ExtResource("4_g0kjg")
 metadata/_custom_type_script = "uid://btheenv6x1p6b"

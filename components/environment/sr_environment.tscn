@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dm6dh5akdeuxm"]
+[gd_scene load_steps=21 format=3 uid="uid://dm6dh5akdeuxm"]
 
 [ext_resource type="Script" uid="uid://c3quwo3gw0cpb" path="res://components/environment/sr_environment.gd" id="1_rcam2"]
 [ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="2_g8j45"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" uid="uid://deo0gxkmk2ahd" path="res://addons/sky_3d/src/Sky3D.gd" id="9_xsr88"]
 [ext_resource type="Script" uid="uid://b4tkplvh7fq40" path="res://addons/sky_3d/src/SkyDome.gd" id="10_adi7f"]
 [ext_resource type="Script" uid="uid://cjmkcj8hwm7ts" path="res://addons/sky_3d/src/TimeOfDay.gd" id="11_d802t"]
+[ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="13_q43c0"]
+[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="14_3qb2d"]
+[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="15_iu40m"]
 [ext_resource type="Script" uid="uid://b2opomk3hntmh" path="res://addons/simusdev/network/SD_NetVariableSynchronizer.gd" id="15_q43c0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jc67n"]
@@ -64,8 +67,8 @@ shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_intensity = 10.0
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.090843044, 0.090843044)
-shader_parameter/cirrus_position2 = Vector2(0.090843044, 0.090843044)
+shader_parameter/cirrus_position1 = Vector2(0.36285922, 0.36285922)
+shader_parameter/cirrus_position2 = Vector2(0.36285922, 0.36285922)
 shader_parameter/cirrus_day_color = Color(0.824, 0.875, 1, 1)
 shader_parameter/cirrus_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
 shader_parameter/cirrus_night_color = Color(0.09, 0.094, 0.129, 1)
@@ -78,7 +81,7 @@ shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_intensity = 0.6
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(0.45417923, 0.45417923)
+shader_parameter/cumulus_position = Vector2(1.8143281, 1.8143281)
 shader_parameter/cumulus_texture = ExtResource("4_kcnsf")
 shader_parameter/cumulus_day_color = Color(0.823529, 0.87451, 1, 1)
 shader_parameter/cumulus_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
@@ -106,6 +109,11 @@ tonemap_mode = 3
 tonemap_white = 6.0
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_4kbe4"]
+
+[sub_resource type="Resource" id="Resource_xsr88"]
+script = ExtResource("14_3qb2d")
+code = "env.time_set"
+metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [node name="Environment" type="Node3D" unique_id=328505675]
 script = ExtResource("1_rcam2")
@@ -146,9 +154,6 @@ dome_path = NodePath("../SkyDome")
 minutes_per_day = 30.0
 current_time = 10.0
 
-[node name="Timer" type="Timer" parent="." unique_id=56943996]
-autostart = true
-
 [node name="TimeSync" type="Node" parent="." unique_id=476361580 node_paths=PackedStringArray("node")]
 script = ExtResource("15_q43c0")
 node = NodePath("../Sky3D")
@@ -174,4 +179,9 @@ tickrate = 1.0
 _editor_initialize = true
 metadata/_custom_type_script = "uid://b2opomk3hntmh"
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="SD_NodeConsoleCommands" type="Node" parent="." unique_id=380234543]
+script = ExtResource("13_q43c0")
+commands = Array[ExtResource("14_3qb2d")]([SubResource("Resource_xsr88")])
+metadata/_custom_type_script = "uid://38osx81mny15"
+
+[connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]
