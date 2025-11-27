@@ -10,6 +10,8 @@ var item: SR_Item
 
 @export var initialized: bool = false
 
+var entity: SR_Entity
+
 func reset(val: bool = true) -> void:
 	hooks.clear()
 	for i in get_children():

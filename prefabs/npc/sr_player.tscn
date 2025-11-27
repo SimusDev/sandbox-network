@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="4_y8bwe"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="5_3611e"]
 [ext_resource type="Script" uid="uid://cnl3gha0ra746" path="res://addons/simusdev/network/SD_NetPositionSynchronizer.gd" id="6_vv6yp"]
-[ext_resource type="Script" uid="uid://doewumcc5625k" path="res://components/weapon/sr_item_weapon.gd" id="7_kn4em"]
+[ext_resource type="Script" uid="uid://doewumcc5625k" path="res://components/weapon/sr_item_weapon_projectile.gd" id="7_kn4em"]
 [ext_resource type="PackedScene" uid="uid://dgriur3thykid" path="res://models/weapon/ak47/ak47.tscn" id="9_br5eg"]
 [ext_resource type="Resource" uid="uid://ls55oo7ysu22" path="res://objects/weapons/ak47.tres" id="11_74ym1"]
 

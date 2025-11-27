@@ -9,6 +9,8 @@ func get_default_tab() -> R_Tab:
 
 func _registered() -> void:
 	prefab = load("uid://dxnpl1v1ilrod")
+	
+	SD_Network.register_object(self, false)
 
 func try_create_source(position: Variant) -> SR_SoundSource3D:
 	var camera: Camera3D = SR_GameWorld3D.try_get_active_camera3d()
@@ -32,4 +34,11 @@ func play_locally(position: Variant) -> SR_SoundSource3D:
 	if sound:
 		SR_GameWorld3D.instance.add_child(sound)
 		sound.global_position = SR_GameWorld3D.get_position_or_node3d_position_globally(position)
+	return sound
+
+func play_locally_attached(node: Node3D, offset: Vector3 = Vector3.ZERO) -> SR_SoundSource3D:
+	var sound: SR_SoundSource3D = try_create_source(node)
+	if sound:
+		sound.position += offset
+		node.add_child(sound)
 	return sound

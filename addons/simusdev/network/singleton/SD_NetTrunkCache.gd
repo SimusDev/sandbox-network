@@ -112,7 +112,7 @@ func cache_method(method: Callable) -> void:
 	_cache_method_rpc.rpc(m_name)
 
 
-@rpc("call_local", "any_peer", "reliable")
+@rpc("call_local", "any_peer", "reliable", CHANNELS[TYPE.METHOD])
 func _cache_method_rpc(method_name: String) -> void:
 	if SD_Network.is_server():
 		return
@@ -180,7 +180,7 @@ func try_cache_node(node: Object) -> void:
 	
 	var net_id: int = node.get_instance_id()
 	if node is SD_NetworkedResource:
-		net_id = SD_NetworkedResource._cached_instances.size() * -1
+		net_id = (SD_NetworkedResource._cached_instances.size() + 1) * -1
 	
 	var net := SD_NetRegisteredNode.get_or_create(node)
 	var path: NodePath = net.last_path
@@ -197,7 +197,7 @@ func try_cache_node(node: Object) -> void:
 	#debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 
-@rpc("reliable")
+@rpc("reliable", "authority", "call_remote", CHANNELS[TYPE.NODE])
 func _client_cache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id()[net_id] = path
 	get_cached_nodes_by_path()[path] = net_id
@@ -232,7 +232,7 @@ func try_uncache_node(path: NodePath) -> void:
 	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
-@rpc("reliable")
+@rpc("reliable", "authority", "call_remote", CHANNELS[TYPE.NODE])
 func _client_uncache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id().erase(net_id)
 	get_cached_nodes_by_path().erase(path)

@@ -19,6 +19,10 @@ static func initialize_from(array: Array[R_AnimationHook], _animator: SR_ItemAni
 	if Engine.is_editor_hint():
 		return
 	
+	if _target is Node:
+		if !_target.is_node_ready():
+			await _target.ready
+	
 	var new: Array[R_AnimationHook] = []
 	
 	for i in array:

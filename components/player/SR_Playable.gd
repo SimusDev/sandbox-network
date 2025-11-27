@@ -5,11 +5,15 @@ class_name SR_Playable
 
 var level: SR_Level3D
 
+var input: SD_NodeInput
+
 func _ready() -> void:
 	if not root:
 		root = get_parent()
 	
 	level = SR_Level3D.find_level(self)
+	
+	
 	
 
 #test govna. remove this method next time
