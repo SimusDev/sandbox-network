@@ -9,9 +9,9 @@
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="4_y8bwe"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="5_3611e"]
 [ext_resource type="Script" uid="uid://cnl3gha0ra746" path="res://addons/simusdev/network/SD_NetPositionSynchronizer.gd" id="6_vv6yp"]
-[ext_resource type="Script" uid="uid://doewumcc5625k" path="res://components/weapon/sr_item_weapon.gd" id="7_kn4em"]
-[ext_resource type="PackedScene" uid="uid://dgriur3thykid" path="res://models/weapon/ak47/ak47.tscn" id="9_br5eg"]
-[ext_resource type="Resource" uid="uid://ls55oo7ysu22" path="res://objects/weapons/ak47.tres" id="11_74ym1"]
+[ext_resource type="PackedScene" uid="uid://c4ycqga2odxtc" path="res://weapon/gun/gun.tscn" id="10_h5nho"]
+[ext_resource type="Script" uid="uid://cacpikkbdlubj" path="res://components/ui/mp_canvas.gd" id="11_evg7k"]
+[ext_resource type="PackedScene" uid="uid://fl2cplwq55e4" path="res://ui/player/player_ui.tscn" id="12_74ym1"]
 
 [sub_resource type="Resource" id="Resource_ht26s"]
 script = ExtResource("3_74ym1")
@@ -94,21 +94,19 @@ allow_serialize = false
 _editor_initialize = true
 metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
-[node name="gun" type="Node3D" parent="Camera" index="2" unique_id=181193917 node_paths=PackedStringArray("entity")]
-script = ExtResource("7_kn4em")
+[node name="gun" parent="Camera" index="2" unique_id=136496866 node_paths=PackedStringArray("entity") instance=ExtResource("10_h5nho")]
 entity = NodePath("../..")
-object = ExtResource("11_74ym1")
-metadata/_custom_type_script = "uid://doewumcc5625k"
-
-[node name="Sketchfab_Scene4" parent="Camera/gun" index="0" unique_id=1555753663 instance=ExtResource("9_br5eg")]
-transform = Transform3D(0.9953962, 0, -0.09584575, 0, 1, 0, 0.09584575, 0, 0.9953962, 0.135, -0.295, 0)
 
 [node name="crouch_pos" type="Node3D" parent="." index="8" unique_id=2117828044]
 
 [node name="ceilling_detection" type="RayCast3D" parent="." index="9" unique_id=675193938]
 target_position = Vector3(0, 1, 0)
 
+[node name="MP_CanvasLayer" type="CanvasLayer" parent="." index="12" unique_id=571300044]
+script = ExtResource("11_evg7k")
+scene = ExtResource("12_74ym1")
+metadata/_custom_type_script = "uid://cacpikkbdlubj"
+
 [connection signal="on_executed" from="commands" to="playable" method="_on_commands_on_executed"]
 
 [editable path="Camera"]
-[editable path="Camera/gun/Sketchfab_Scene4"]

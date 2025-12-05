@@ -4,10 +4,6 @@ class_name W_FPCSourceLikeCamera
 @export var body: CharacterBody3D
 @export_group("References")
 @export var camera: Camera3D
-#@export var viewmodel:SourceViewModelRoot3D
-
-@export_group("Viewmodel Settings")
-@export var sway_multiplier = 1
 
 @export_group("Camera Settings")
 @export var make_current_at_start: bool = true

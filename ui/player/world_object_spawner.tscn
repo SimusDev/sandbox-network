@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://doq5n3yx8d5sf"]
+
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="1_030cl"]
+[ext_resource type="Texture2D" uid="uid://yf4p7w3h6qdb" path="res://addons/simusdev/components/inventory/icon_item.png" id="1_rw4td"]
+
+[sub_resource type="GDScript" id="GDScript_1ruc6"]
+resource_name = "script"
+script/source = "extends Control
+
+@export var tree:Tree
+@export var interface_menu:SD_UIInterfaceMenu
+
+@export var placeholder_icon:Texture
+
+@onready var tree_root: TreeItem = tree.create_item()
+
+
+
+func _ready() -> void:
+	interface_menu.opened.connect(update)
+	tree_root.set_text(0, \"root\")
+
+func update() -> void:
+	
+	for child in tree_root.get_children():
+		child.free() 
+	
+	var objects:Array = R_Object.get_reference_list()
+	for object in objects:
+		if object is R_Object: 
+			var item: TreeItem = tree.create_item(tree_root)
+			item.set_icon_max_width(0, 32)
+			
+			
+			if object.resource_name != \"\":
+				item.set_text(0, object.resource_name)
+			else:
+				item.set_text(0, str(object) )
+			if object.icon:
+				item.set_icon(0, object.icon)
+			else:
+				if placeholder_icon:
+					item.set_icon(0, placeholder_icon)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rw4td"]
+bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ruc6"]
+bg_color = Color(0.05197096, 0.051970966, 0.051970914, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+
+[node name="WorldObjectSpawner" type="Control" unique_id=887135727 node_paths=PackedStringArray("tree", "interface_menu")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = SubResource("GDScript_1ruc6")
+tree = NodePath("Tree")
+interface_menu = NodePath("SD_UIInterfaceMenu")
+placeholder_icon = ExtResource("1_rw4td")
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." unique_id=2088507992 node_paths=PackedStringArray("target")]
+script = ExtResource("1_030cl")
+target = NodePath("..")
+input_action = "key.q"
+input_just_press = false
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[node name="Panel" type="Panel" parent="." unique_id=1471792016]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -258.0
+offset_right = 288.0
+offset_bottom = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rw4td")
+
+[node name="Panel2" type="Panel" parent="." unique_id=541317788]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.055555556
+anchor_right = 0.75
+anchor_bottom = 0.10185185
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ruc6")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel2" unique_id=757103739]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.007
+anchor_right = 0.99300003
+anchor_bottom = 1.0
+offset_left = -0.032000065
+offset_right = 0.031982422
+grow_horizontal = 2
+grow_vertical = 2
+text = "World Object Spawner"
+
+[node name="Tree" type="Tree" parent="." unique_id=1707806347]
+layout_mode = 0
+anchor_left = 0.25
+anchor_top = 0.10185185
+anchor_right = 0.75
+anchor_bottom = 0.9444444
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true

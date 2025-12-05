@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="R_Weapon" load_steps=4 format=3 uid="uid://ls55oo7ysu22"]
+[gd_resource type="Resource" script_class="R_Weapon" load_steps=5 format=3 uid="uid://ls55oo7ysu22"]
 
+[ext_resource type="Texture2D" uid="uid://beda6yqrsg62j" path="res://weapon/gun/icon.png" id="1_g0kjg"]
 [ext_resource type="Script" uid="uid://btheenv6x1p6b" path="res://components/weapon/r_weapon.gd" id="1_ifyfa"]
 [ext_resource type="Resource" uid="uid://bbiwfc1ysehud" path="res://objects/projectiles/rifle_projectile.tres" id="1_wiw74"]
-[ext_resource type="Resource" uid="uid://blyqwyt4pvbph" path="res://objects/sounds/weapon/ak47/ak47_fire.tres" id="4_g0kjg"]
+[ext_resource type="Resource" uid="uid://blyqwyt4pvbph" path="res://objects/sounds/weapon/ak47/ak47_fire_sound.tres" id="3_wiw74"]
 
 [resource]
+resource_name = "ak47"
 script = ExtResource("1_ifyfa")
 projectile = ExtResource("1_wiw74")
-sound_fire = ExtResource("4_g0kjg")
+sound_fire = ExtResource("3_wiw74")
+icon = ExtResource("1_g0kjg")
 metadata/_custom_type_script = "uid://btheenv6x1p6b"

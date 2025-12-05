@@ -12,6 +12,9 @@ func _ready() -> void:
 	level = SR_Level3D.find_level(self)
 	
 
+static func find_above(node:Node) -> SR_Playable:
+	return null
+
 #test govna. remove this method next time
 func _on_commands_on_executed(command: SD_ConsoleCommand) -> void:
 	if !SD_Network.is_authority(self):

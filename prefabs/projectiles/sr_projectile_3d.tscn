@@ -1,19 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://hc4jbtcudnyd"]
+[gd_scene load_steps=5 format=3 uid="uid://hc4jbtcudnyd"]
 
 [ext_resource type="Script" uid="uid://c4stpbccvcyvd" path="res://components/projectile/sr_projectile.gd" id="1_ponba"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ponba"]
-emission_enabled = true
-emission = Color(1, 1, 0.32941177, 1)
-emission_energy_multiplier = 3.45
+[sub_resource type="Curve" id="Curve_ponba"]
+_data = [Vector2(0, 0.078651786), 0.0, 0.0, 0, 0, Vector2(0.24122807, 0.1460675), 0.0, 0.0, 0, 0, Vector2(0.6798246, 0.30337083), -0.49812722, -0.49812722, 0, 0, Vector2(0.9122807, 0.22471917), -1.2252063, -1.2252063, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
 
-[sub_resource type="BoxMesh" id="BoxMesh_8t3yg"]
-material = SubResource("StandardMaterial3D_ponba")
-size = Vector3(0.045, 0.045, 0.295)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8t3yg"]
+albedo_color = Color(1, 0.6666667, 0.2901961, 1)
+emission_enabled = true
+emission = Color(0.9999985, 0.9986066, 0.46295452, 1)
+emission_energy_multiplier = 2.5
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_h0ocy"]
+material = SubResource("StandardMaterial3D_8t3yg")
+radius = 0.065
+section_length = 0.085
+curve = SubResource("Curve_ponba")
 
 [node name="SR_Projectile3D" type="Node3D" unique_id=374354375]
 script = ExtResource("1_ponba")
 metadata/_custom_type_script = "uid://c4stpbccvcyvd"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=248386943]
-mesh = SubResource("BoxMesh_8t3yg")
+transform = Transform3D(1, 0, 0, 0, 1.3113416e-07, -1, 0, 1, 1.3113416e-07, 0, 0, 0)
+mesh = SubResource("TubeTrailMesh_h0ocy")

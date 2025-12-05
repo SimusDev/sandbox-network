@@ -3,5 +3,6 @@
 [ext_resource type="Script" uid="uid://csqinxb5wkekx" path="res://components/factions/r_faction.gd" id="1_rkkxt"]
 
 [resource]
+resource_name = "faction_stalker"
 script = ExtResource("1_rkkxt")
 metadata/_custom_type_script = "uid://csqinxb5wkekx"
