@@ -13,6 +13,14 @@ func _ready() -> void:
 	synchronizer = _create_component(synchronizer, SD_NetPositionSynchronizer, "synchronizer")
 	synchronizer.tickrate = 64.0
 	synchronizer.node = root
+	
+	if root is PhysicsBody3D:
+		SR_Collisions.clear_body_collisions(root)
+		SR_Collisions.set_body_collision(root, SR_Collisions.LAYERS.WORLD, false)
+		SR_Collisions.set_body_collision(root, SR_Collisions.LAYERS.ENTITY, false)
+		SR_Collisions.set_body_collision(root, SR_Collisions.LAYERS.ZONE)
+		
+	
 
 func _create_component(reference: Object, script: GDScript, c_name: String) -> Object:
 	if is_instance_valid(reference):

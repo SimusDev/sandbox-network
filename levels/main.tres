@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="R_Level3D" load_steps=2 format=3 uid="uid://m6xoypo1abuh"]
+[gd_resource type="Resource" script_class="R_Level3D" load_steps=3 format=3 uid="uid://m6xoypo1abuh"]
 
+[ext_resource type="PackedScene" uid="uid://c2oa63k4vix2e" path="res://prefabs/level/main/main.tscn" id="1_07ovh"]
 [ext_resource type="Script" uid="uid://cxeou8qwnyoh4" path="res://components/level/R_Level3D.gd" id="1_rrmu3"]
 
 [resource]
 script = ExtResource("1_rrmu3")
-name = &"main"
+size = Vector3(50, 0.1, 50)
+map_prefabs = Array[PackedScene]([ExtResource("1_07ovh")])
 metadata/_custom_type_script = "uid://cxeou8qwnyoh4"

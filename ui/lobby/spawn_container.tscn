@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://be33suo0pue0x"]
+
+[ext_resource type="Script" uid="uid://slqpiltepdee" path="res://ui/lobby/spawn_container.gd" id="1_pjrst"]
+[ext_resource type="PackedScene" uid="uid://ceejdl0r4kum1" path="res://ui/lobby/spawn.tscn" id="2_l0rpq"]
+
+[node name="SpawnContainer" type="Control" unique_id=945810012 node_paths=PackedStringArray("_container")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 562.0
+offset_bottom = 398.0
+script = ExtResource("1_pjrst")
+_ui = ExtResource("2_l0rpq")
+_container = NodePath("ScrollContainer/VBoxContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1716273672]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1319015137]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="Spawn" parent="ScrollContainer/VBoxContainer" unique_id=1575448275 instance=ExtResource("2_l0rpq")]
+layout_mode = 2
+
+[node name="Spawn2" parent="ScrollContainer/VBoxContainer" unique_id=1420786021 instance=ExtResource("2_l0rpq")]
+layout_mode = 2

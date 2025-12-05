@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bayoy0yb70iy5"]
+
+[ext_resource type="Script" uid="uid://b8ife6f86jhak" path="res://ui/lobby/screen_character_select.gd" id="1_msfut"]
+[ext_resource type="PackedScene" uid="uid://be33suo0pue0x" path="res://ui/lobby/spawn_container.tscn" id="2_lj82a"]
+
+[node name="ScreenCharacterSelect" type="Control" unique_id=1220532687]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_msfut")
+
+[node name="SpawnContainer" parent="." unique_id=945810012 instance=ExtResource("2_lj82a")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -281.0
+offset_top = -199.0
+offset_right = 281.0
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="selected" from="SpawnContainer" to="." method="_on_spawn_container_selected"]

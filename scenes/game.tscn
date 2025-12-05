@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bibivk1ja0l6h"]
+[gd_scene load_steps=8 format=3 uid="uid://bibivk1ja0l6h"]
 
 [ext_resource type="Script" uid="uid://blb6wpk3rh5aw" path="res://components/player/s_player_auth.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://dm6dh5akdeuxm" path="res://components/environment/sr_environment.tscn" id="1_lnu2h"]
 [ext_resource type="Script" uid="uid://de4jqv4yxtgva" path="res://components/game_world.gd" id="1_p57ef"]
 [ext_resource type="Script" uid="uid://gjjf8sauvp33" path="res://components/level/SR_LevelHandler.gd" id="1_uwrxv"]
 [ext_resource type="Resource" uid="uid://wj7h2oabcoh3" path="res://levels/lobby.tres" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://fv5j7lt7lsua" path="res://components/player/s_player_character_select.gd" id="3_p57ef"]
+[ext_resource type="Resource" uid="uid://dphwrwg1hg068" path="res://objects/player/player.tres" id="4_u5sy4"]
 
 [node name="Game" type="Node3D" unique_id=2039344107]
 script = ExtResource("1_p57ef")
@@ -14,6 +16,11 @@ script = ExtResource("1_p57ef")
 [node name="S_PlayerAuth" type="Node" parent="Singletons" unique_id=1667242917]
 script = ExtResource("1_iywne")
 metadata/_custom_type_script = "uid://blb6wpk3rh5aw"
+
+[node name="S_PlayerCharacterSelect" type="Node" parent="Singletons" unique_id=954506392]
+script = ExtResource("3_p57ef")
+_player_object = ExtResource("4_u5sy4")
+metadata/_custom_type_script = "uid://fv5j7lt7lsua"
 
 [node name="Environment" parent="." unique_id=328505675 instance=ExtResource("1_lnu2h")]
 

@@ -7,14 +7,28 @@ var level: SR_Level3D
 
 var input: SD_NodeInput
 
+var active: bool = false
+
+var network: SD_NetworkPlayer
+
 func _ready() -> void:
+	pass
+
+func _enter_tree() -> void:
 	if not root:
 		root = get_parent()
 	
+	if !root.is_node_ready():
+		
+		network = SD_NetworkPlayer.find_in(root)
+		
+		await root.ready
+	
 	level = SR_Level3D.find_level(self)
-	
-	
-	
+	level._player_entered(self)
+
+func _exit_tree() -> void:
+	level._player_exited(self)
 
 static func find_above(node:Node) -> SR_Playable:
 	return null
@@ -27,7 +41,5 @@ func _on_commands_on_executed(command: SD_ConsoleCommand) -> void:
 	match command.get_code():
 		"level.spawn":
 			var object: R_Object = R_Object.find_by_id(command.get_value_as_string())
-			for i in R_Object.get_reference_list():
-				print(i.id)
 			if object is R_WorldObject:
 				level.instantiate(object).spawn().set_global_position(root)

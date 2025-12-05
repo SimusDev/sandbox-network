@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="R_Level3D" load_steps=3 format=3 uid="uid://dsuxhxntnvbdt"]
+
+[ext_resource type="Script" uid="uid://cxeou8qwnyoh4" path="res://components/level/R_Level3D.gd" id="1_5pl5t"]
+[ext_resource type="PackedScene" uid="uid://bl7vqrawgb84m" path="res://prefabs/level/arena/arena.tscn" id="1_80mre"]
+
+[resource]
+script = ExtResource("1_5pl5t")
+size = Vector3(50, 0.1, 50)
+position = Vector3(1, 0, 0)
+map_prefabs = Array[PackedScene]([ExtResource("1_80mre")])
+metadata/_custom_type_script = "uid://cxeou8qwnyoh4"

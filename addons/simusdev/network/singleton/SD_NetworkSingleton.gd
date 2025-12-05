@@ -1,6 +1,15 @@
 extends Node
 class_name SD_NetworkSingleton
 
+enum CHANNEL {
+	PLAYERS = 73,
+	NODE,
+	METHOD,
+	CHANNEL,
+	RESOURCE,
+}
+
+
 @onready var console: SD_TrunkConsole = SimusDev.console
 
 var settings: SD_NetworkSettings
