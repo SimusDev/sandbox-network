@@ -5,6 +5,8 @@ class_name SR_Entity
 @export var synchronizer: SD_NetPositionSynchronizer
 
 func _ready() -> void:
+	SD_Components.append_to(root, self)
+	
 	if !root:
 		root = get_parent()
 	
