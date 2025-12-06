@@ -29,14 +29,7 @@ func _ready() -> void:
 	
 	_initialize_level_sections()
 	
-	if _resource.lobby:
-		status.set_online()
-		S_PlayerCharacterSelect.register_success_callback(_character_select_success)
-	
 	_on_status_changed()
-
-func _character_select_success() -> void:
-	queue_free()
 
 func _initialize_level_sections() -> void:
 	if not _resource.visible:
@@ -117,6 +110,9 @@ func instantiate_local(object: R_WorldObject) -> I_ObjectInstance:
 func _player_entered(player: SR_Playable) -> void:
 	_players.append(player)
 	_try_update_online_offline_status()
+	
+	if SD_Network.is_server():
+		SR_LevelHandler._server_send_level_to_peer(player.network.get_peer_id(), _resource)
 
 func _player_exited(player: SR_Playable) -> void:
 	_players.erase(player)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bibivk1ja0l6h"]
+[gd_scene load_steps=10 format=3 uid="uid://bibivk1ja0l6h"]
 
 [ext_resource type="Script" uid="uid://blb6wpk3rh5aw" path="res://components/player/s_player_auth.gd" id="1_iywne"]
 [ext_resource type="PackedScene" uid="uid://dm6dh5akdeuxm" path="res://components/environment/sr_environment.tscn" id="1_lnu2h"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://fv5j7lt7lsua" path="res://components/player/s_player_character_select.gd" id="3_p57ef"]
 [ext_resource type="Resource" uid="uid://dphwrwg1hg068" path="res://objects/player/player.tres" id="4_u5sy4"]
 [ext_resource type="Script" uid="uid://ljnqmkpnp50n" path="res://components/event/s_eventbus.gd" id="5_gee14"]
+[ext_resource type="PackedScene" uid="uid://byj76k452xx7v" path="res://ui/lobby/lobby.tscn" id="9_0tnpc"]
 
 [node name="Game" type="Node3D" unique_id=2039344107]
 script = ExtResource("1_p57ef")
@@ -34,3 +35,5 @@ script = ExtResource("1_uwrxv")
 levels_path = "res://levels"
 _lobby = ExtResource("2_yqjtg")
 metadata/_custom_type_script = "uid://gjjf8sauvp33"
+
+[node name="Lobby" parent="." unique_id=632172441 instance=ExtResource("9_0tnpc")]

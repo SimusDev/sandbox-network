@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SR_ServerAuthData" load_steps=6 format=3]
+[gd_resource type="Resource" script_class="SR_ServerAuthData" load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://components/data/sr_server_auth_data.gd" id="1_53rd5"]
 [ext_resource type="Script" path="res://components/data/r_user_data.gd" id="2_bl1o6"]
@@ -19,6 +19,17 @@ name = "user2"
 password = "123"
 peer = 1628607446
 
+[sub_resource type="Resource" id="Resource_ojx0y"]
+script = ExtResource("2_bl1o6")
+name = "user22"
+password = "123"
+peer = 31061126
+
+[sub_resource type="Resource" id="Resource_380bd"]
+script = ExtResource("2_bl1o6")
+name = "user223"
+password = "123"
+
 [resource]
 script = ExtResource("1_53rd5")
-users = Array[ExtResource("2_bl1o6")]([SubResource("Resource_m72nh"), SubResource("Resource_bl1o6"), SubResource("Resource_belkn")])
+users = Array[ExtResource("2_bl1o6")]([SubResource("Resource_m72nh"), SubResource("Resource_bl1o6"), SubResource("Resource_belkn"), SubResource("Resource_ojx0y"), SubResource("Resource_380bd")])
