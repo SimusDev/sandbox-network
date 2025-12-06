@@ -11,8 +11,19 @@ var active: bool = false
 
 var network: SD_NetworkPlayer
 
+static var _local: SR_Playable
+
+func is_local() -> bool:
+	return network == SD_NetworkPlayer.get_local()
+
+static func get_local() -> SR_Playable:
+	return _local
+
 func _ready() -> void:
-	pass
+	S_EventBus.publish(S_EventBus.event_player_spawn, {"playable": self})
+	
+	if is_local():
+		S_EventBus.publish(S_EventBus.event_player_spawn_local, {"playable": self})
 
 func _enter_tree() -> void:
 	if not root:
@@ -21,6 +32,8 @@ func _enter_tree() -> void:
 	if !root.is_node_ready():
 		
 		network = SD_NetworkPlayer.find_in(root)
+		if SD_Network.is_authority(self):
+			_local = self
 		
 		await root.ready
 	
@@ -29,6 +42,12 @@ func _enter_tree() -> void:
 
 func _exit_tree() -> void:
 	level._player_exited(self)
+	
+	if is_queued_for_deletion():
+		S_EventBus.publish(S_EventBus.event_player_despawn, {"playable": self})
+		
+		if is_local():
+			S_EventBus.publish(S_EventBus.event_player_despawn_local, {"playable": self})
 
 static func find_above(node:Node) -> SR_Playable:
 	return null

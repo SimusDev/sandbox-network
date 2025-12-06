@@ -39,7 +39,7 @@ func _on_connected_to_server() -> void:
 	net_player.data.set("_username", singleton.username)
 	_recieve_player_from_client_and_send_anwser.rpc_id(singleton.SERVER_ID, SD_NetworkSerializer.parse(net_player), singleton.get_game_info())
 
-@rpc("call_remote", "any_peer", "reliable")
+@rpc("call_remote", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.PLAYERS)
 func _recieve_player(resource: SD_NetPlayerResource = null) -> SD_NetworkPlayer:
 	if not resource:
 		resource = SD_NetPlayerResource.new()
