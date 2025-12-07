@@ -6,6 +6,9 @@ var owner: Object
 
 var parent: Object
 
+func find_level() -> SR_Level3D:
+	return SR_Level3D.find_level(owner)
+
 func set_in(object: Object) -> void:
 	if owner:
 		return
@@ -57,3 +60,26 @@ func get_global_rotation() -> Vector3:
 	if owner is Node3D:
 		return owner.global_rotation
 	return Vector3.ZERO
+
+func set_position(position: Variant) -> void:
+	if owner is Node3D:
+		owner.position = SR_GameWorld3D.get_position_or_node3d_position_locally(position)
+
+func get_position() -> Vector3:
+	if owner is Node3D:
+		return owner.position
+	return Vector3.ZERO
+
+func set_rotation(rotation: Variant) -> void:
+	if owner is Node3D:
+		owner.rotation = SR_GameWorld3D.get_rotation_or_node3d_rotation_locally(rotation)
+
+func get_rotation() -> Vector3:
+	if owner is Node3D:
+		return owner.rotation
+	return Vector3.ZERO
+
+func reparent(node: Node) -> void:
+	if owner is Node:
+		owner.reparent(node)
+	

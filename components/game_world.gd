@@ -8,7 +8,7 @@ func _enter_tree() -> void:
 	instance = self
 
 static func get_position_or_node3d_position_globally(from: Variant) -> Vector3:
-	if is_instance_valid(from): 
+	if is_instance_valid(from) and from is Object: 
 		if "global_position" in from:
 			return from.global_position
 	
@@ -17,9 +17,27 @@ static func get_position_or_node3d_position_globally(from: Variant) -> Vector3:
 	return Vector3()
 
 static func get_rotation_or_node3d_rotation_globally(from: Variant) -> Vector3:
-	if is_instance_valid(from): 
+	if is_instance_valid(from) and from is Object: 
 		if "global_rotation" in from:
 			return from.global_rotation
+	
+	elif from is Vector3:
+		return from
+	return Vector3()
+
+static func get_position_or_node3d_position_locally(from: Variant) -> Vector3:
+	if is_instance_valid(from) and from is Object: 
+		if "position" in from:
+			return from.position
+	
+	elif from is Vector3:
+		return from
+	return Vector3()
+
+static func get_rotation_or_node3d_rotation_locally(from: Variant) -> Vector3:
+	if is_instance_valid(from) and from is Object: 
+		if "rotation" in from:
+			return from.rotation
 	
 	elif from is Vector3:
 		return from

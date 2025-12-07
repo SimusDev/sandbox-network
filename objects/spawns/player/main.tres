@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="R_PlayerSpawn3D" load_steps=3 format=3 uid="uid://c8sbry4lkxhrl"]
+
+[ext_resource type="Script" uid="uid://dakmmxm142bca" path="res://components/spawn/r_player_spawn3d.gd" id="1_aixpq"]
+[ext_resource type="Resource" uid="uid://m6xoypo1abuh" path="res://levels/main.tres" id="1_cuygj"]
+
+[resource]
+script = ExtResource("1_aixpq")
+level = ExtResource("1_cuygj")
+position = Vector3(0, 5, 0)
+metadata/_custom_type_script = "uid://dakmmxm142bca"

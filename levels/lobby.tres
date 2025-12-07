@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_1l1rb")
+size = Vector3(50, 0.1, 50)
+lobby = true
 visible = false
-name = &"lobby"
 prefabs = Array[PackedScene]([ExtResource("1_shofr")])
 metadata/_custom_type_script = "uid://cxeou8qwnyoh4"

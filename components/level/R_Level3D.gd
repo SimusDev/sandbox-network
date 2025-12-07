@@ -1,8 +1,12 @@
 extends Resource
 class_name R_Level3D
 
+@export var size: Vector3 = Vector3.ZERO
+@export var position: Vector3 = Vector3.ZERO
+@export var lobby: bool = false
 @export var visible: bool = true
-@export var name: StringName = "level3d"
+@export var name: StringName = ""
+@export var map_prefabs: Array[PackedScene] = []
 @export var prefabs: Array[PackedScene] = []
 @export var online_prefabs: Array[PackedScene] = []
 @export var offline_prefabs: Array[PackedScene] = []
@@ -10,16 +14,22 @@ class_name R_Level3D
 
 const LEVEL_BASE: PackedScene = preload("uid://cerh8ahldbw0c") as PackedScene
 
+var __instance: SR_Level3D
+
+func init() -> void:
+	if name.is_empty():
+		name = resource_path.get_file().get_basename()
+
+func get_local_instance() -> SR_Level3D:
+	return __instance
+
 func create_instance() -> SR_Level3D:
+	init()
 	var instance: SR_Level3D = LEVEL_BASE.instantiate() as SR_Level3D
 	instance._resource = self
 	instance.name = name.validate_node_name()
-	return instance
-
-func spawn(object: R_WorldObject) -> I_ObjectInstance:
-	if SD_Network.is_server():
-		return null
 	
-	var instance: I_ObjectInstance
+	instance.position = position * size
 	
+	__instance = instance
 	return instance

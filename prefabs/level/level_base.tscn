@@ -10,6 +10,15 @@ metadata/_custom_type_script = "uid://cl601twkjgpo2"
 
 [node name="Spawner" type="Node" parent="." unique_id=777711215]
 script = ExtResource("2_87vmp")
+debug = true
 metadata/_custom_type_script = "uid://q5tba8186x87"
 
 [node name="Prefabs" type="Node3D" parent="." unique_id=1285453469]
+
+[node name="Maps" type="Node3D" parent="Prefabs" unique_id=1978381717]
+
+[node name="Online" type="Node3D" parent="Prefabs" unique_id=31247898]
+
+[node name="Offline" type="Node3D" parent="Prefabs" unique_id=2015112406]
+
+[node name="Server" type="Node3D" parent="Prefabs" unique_id=267702903]

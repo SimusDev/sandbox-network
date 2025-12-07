@@ -24,6 +24,9 @@ static func find_by_id(obj_id: String) -> R_Object:
 	return _references.get(obj_id)
 
 func register() -> void:
+	if resource_path.is_empty():
+		return
+	
 	if not tab:
 		tab = get_default_tab()
 	
@@ -45,6 +48,7 @@ func register() -> void:
 	SD_Console.i().write_info("%s registered: %s" % [get_script().get_global_name(), id])
 	
 	net_id = id
+	
 	
 	SD_Network.singleton.cache.cache_resource(self)
 	

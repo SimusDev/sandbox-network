@@ -1,19 +1,6 @@
 extends SD_NetTrunk
 class_name SD_NetTrunkCache
 
-enum TYPE {
-	RESOURCE,
-	METHOD,
-	NODE,
-}
-
-const CHANNELS: Dictionary[int, int] = {
-	TYPE.RESOURCE: 100,
-	TYPE.METHOD : 101,
-	TYPE.NODE : 102,
-	
-}
-
 var _cached_input_map_string: Dictionary[StringName, int] = {}
 var _cached_input_map_id: Dictionary[int, StringName] = {}
 
@@ -57,7 +44,7 @@ func cache_resource(resource: Resource) -> void:
 	
 	_cache_resource_rpc.rpc(path)
 
-@rpc("call_local", "any_peer", "reliable", CHANNELS[TYPE.RESOURCE])
+@rpc("call_local", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.RESOURCE)
 func _cache_resource_rpc(path: String) -> void:
 	SD_Network.get_cached_resources().append(path)
 	debug_print("resource cached: %s" % path)
@@ -112,7 +99,7 @@ func cache_method(method: Callable) -> void:
 	_cache_method_rpc.rpc(m_name)
 
 
-@rpc("call_local", "any_peer", "reliable", CHANNELS[TYPE.METHOD])
+@rpc("call_local", "any_peer", "reliable", SD_NetworkSingleton.CHANNEL.METHOD)
 func _cache_method_rpc(method_name: String) -> void:
 	if SD_Network.is_server():
 		return
@@ -197,7 +184,7 @@ func try_cache_node(node: Object) -> void:
 	#debug_print("node cached: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
 
-@rpc("reliable", "authority", "call_remote", CHANNELS[TYPE.NODE])
+@rpc("reliable", "authority", "call_remote", SD_NetworkSingleton.CHANNEL.NODE)
 func _client_cache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id()[net_id] = path
 	get_cached_nodes_by_path()[path] = net_id
@@ -232,7 +219,7 @@ func try_uncache_node(path: NodePath) -> void:
 	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 
-@rpc("reliable", "authority", "call_remote", CHANNELS[TYPE.NODE])
+@rpc("reliable", "authority", "call_remote", SD_NetworkSingleton.CHANNEL.NODE)
 func _client_uncache(net_id: int, path: NodePath) -> void:
 	get_cached_nodes_by_id().erase(net_id)
 	get_cached_nodes_by_path().erase(path)

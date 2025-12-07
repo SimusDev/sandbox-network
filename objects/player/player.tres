@@ -1,17 +1,10 @@
-[gd_resource type="Resource" script_class="R_Player" load_steps=5 format=3 uid="uid://dphwrwg1hg068"]
+[gd_resource type="Resource" script_class="R_Player" load_steps=3 format=3 uid="uid://dphwrwg1hg068"]
 
 [ext_resource type="PackedScene" uid="uid://dk45eqctyampm" path="res://prefabs/npc/sr_player.tscn" id="1_dkf0r"]
 [ext_resource type="Script" uid="uid://w25xf83jfreb" path="res://components/player/r_player.gd" id="1_ygh2m"]
-[ext_resource type="Script" uid="uid://du047v2phwdrb" path="res://components/object/r_tab.gd" id="3_3evqu"]
-
-[sub_resource type="Resource" id="Resource_ddmot"]
-resource_name = "sex"
-script = ExtResource("3_3evqu")
-metadata/_custom_type_script = "uid://du047v2phwdrb"
 
 [resource]
 resource_name = "player"
 script = ExtResource("1_ygh2m")
 prefab = ExtResource("1_dkf0r")
-tab = SubResource("Resource_ddmot")
 metadata/_custom_type_script = "uid://w25xf83jfreb"

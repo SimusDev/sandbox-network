@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2oa63k4vix2e"]
+
+[ext_resource type="Texture2D" uid="uid://bu7otfqxvfvmi" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="1_y5nle"]
+[ext_resource type="Script" uid="uid://c6hvi4sf73tdy" path="res://components/level/sr_teleport3d.gd" id="2_vwl54"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7hv5o"]
+albedo_texture = ExtResource("1_y5nle")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ogvd2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ljjys"]
+
+[node name="Lobby" type="Node3D" unique_id=1062069025]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=516542928]
+use_collision = true
+size = Vector3(50, 0.1, 50)
+material = SubResource("StandardMaterial3D_7hv5o")
+
+[node name="spawn" type="Node3D" parent="." unique_id=1695686573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4918032, 0)
+
+[node name="SR_Teleport3D" type="Area3D" parent="." unique_id=591133174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.302729, 0.8829677, 0.53774977)
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+script = ExtResource("2_vwl54")
+level_id = "uid://dsuxhxntnvbdt"
+to_position = Vector3(0, 5, 0)
+metadata/_custom_type_script = "uid://c6hvi4sf73tdy"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SR_Teleport3D" unique_id=807746843]
+shape = SubResource("BoxShape3D_ogvd2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SR_Teleport3D" unique_id=991469672]
+mesh = SubResource("BoxMesh_ljjys")

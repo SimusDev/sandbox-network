@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceejdl0r4kum1"]
+
+[ext_resource type="Script" uid="uid://cipeev78icffb" path="res://ui/lobby/spawn.gd" id="1_o4426"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_hj6hi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hj6hi"]
+font_size = 24
+
+[node name="Spawn" type="Button" unique_id=1653638991]
+custom_minimum_size = Vector2(500, 130)
+offset_right = 500.0
+offset_bottom = 130.0
+script = ExtResource("1_o4426")
+
+[node name="icon" type="TextureRect" parent="." unique_id=214668150]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1374268424]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.41568628)
+
+[node name="spawn_name" type="Label" parent="." unique_id=2139366445]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.93100005
+offset_bottom = -0.030006409
+grow_horizontal = 2
+grow_vertical = 2
+text = "label"
+label_settings = SubResource("LabelSettings_hj6hi")
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+script = ExtResource("2_hj6hi")
+font_size = 24
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbrtcpfd8oi34"]
+
+[ext_resource type="Script" uid="uid://qoneux3qso8s" path="res://ui/lobby/screen_auth.gd" id="1_m3nfj"]
+[ext_resource type="Script" uid="uid://c2rlqeq2bwvd0" path="res://addons/simusdev/localization/SD_Label.gd" id="2_i6ukn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6ukn"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntbgt"]
+
+[node name="ScreenAuth" type="Control" unique_id=1084077054]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m3nfj")
+
+[node name="Panel" type="Panel" parent="." unique_id=1985661261]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -362.75
+offset_top = -166.5
+offset_right = 362.75
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ukn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1094984877]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="l_login" type="LineEdit" parent="Panel/VBoxContainer" unique_id=1384562957]
+layout_mode = 2
+placeholder_text = "LOGIN"
+alignment = 1
+
+[node name="l_password" type="LineEdit" parent="Panel/VBoxContainer" unique_id=234671273]
+layout_mode = 2
+placeholder_text = "PASSWORD"
+alignment = 1
+
+[node name="b_login" type="Button" parent="Panel/VBoxContainer" unique_id=908514797]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "LOGIN"
+
+[node name="SD_Label" type="Label" parent="Panel" unique_id=346913658]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.149
+offset_bottom = -0.11700058
+grow_horizontal = 2
+grow_vertical = 2
+text = "authentication"
+label_settings = SubResource("LabelSettings_ntbgt")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+uppercase = true
+script = ExtResource("2_i6ukn")
+metadata/_custom_type_script = "uid://c2rlqeq2bwvd0"
+
+[connection signal="pressed" from="Panel/VBoxContainer/b_login" to="." method="_on_b_login_pressed"]

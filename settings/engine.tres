@@ -21,5 +21,13 @@ cache = SubResource("Resource_cxv7n")
 [resource]
 script = ExtResource("5_tfge0")
 developer = "simusdev"
+console = Dictionary[String, Variant]({
+"disable_on_release": true,
+"enabled": true,
+"enabled_desktop_override": true,
+"gd_print": false,
+"hide_private_commands": true,
+"size": Vector2(768, 512)
+})
 network = SubResource("Resource_3krnf")
 multiplayer = SubResource("Resource_aioq7")

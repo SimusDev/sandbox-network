@@ -10,7 +10,6 @@ func _ready() -> void:
 	for path in paths:
 		for file in SD_FileSystem.get_all_files_with_extension_from_directory(path, SD_FileExtensions.EC_RESOURCE):
 			var resource: Resource = load(file)
-			#print(resource)
 			if resource is R_Object:
 				_resources.append(resource)
 				resource.register()
