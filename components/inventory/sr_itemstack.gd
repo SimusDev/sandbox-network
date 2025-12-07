@@ -1,2 +1,251 @@
-extends Node
-class_name SR_ItemStack
+@icon("res://addons/simusdev/components/inventory/icon_item.png")
+class_name SR_ItemStack extends Node
+
+#region VARS
+@export var _data: Dictionary = {
+	"quantity" : 1,
+}
+
+@export var object: R_Object
+var _inventory: SR_Inventory
+var _slot: SR_InventorySlot
+var item: SR_Item
+
+var _last_path: NodePath
+
+#endregion
+
+#region SIGNALS
+signal data_changed(key: Variant, value: Variant)
+signal updated()
+signal quantity_changed()
+signal durability_changed()
+signal max_durability_changed()
+#endregion
+
+#region DATA
+
+func _data_changed_(key: Variant, value: Variant) -> void:
+	match key:
+		"quantity":
+			quantity_changed.emit()
+			if get_slot():
+				get_slot().update()
+			if value <= 0:
+				if _inventory:
+					_inventory.remove_item(self)
+		"durability":
+			durability_changed.emit()
+			if get_slot():
+				get_slot().update()
+		"max_durability":
+			max_durability_changed.emit()
+			if get_slot():
+				get_slot().update()
+
+func data_set_value(key: Variant, value: Variant) -> void:
+	if SD_Network.is_server():
+		if is_inside_tree():
+			SD_Network.call_func(_data_set_value_net, [key, value])
+		else:
+			_data_set_value_net(key, value)
+
+func _data_set_value_net(key: Variant, value: Variant) -> void:
+	_data.set(key, value)
+	_data_changed_(key, value)
+	data_changed.emit(key, value)
+	updated.emit()
+
+func data_get_or_add(key: Variant, value: Variant) -> Variant:
+	if _data.has(key):
+		return _data[key]
+		#return _data.get(value, value)
+	else:
+		data_set_value(key, value)
+	return value
+
+func set_quantity(size: int) -> void:
+	data_set_value("quantity", size)
+
+func get_quantity() -> int:
+	return data_get_or_add("quantity", 1)
+
+func set_durability(value: float) -> void:
+	data_set_value("durability", value)
+
+func get_durability() -> float:
+	return data_get_or_add("durability", 0.0)
+
+func set_max_durability(value: float) -> void:
+	data_set_value("durability_max", value)
+
+func get_max_durability() -> float:
+	return data_get_or_add("durability_max", 0.0)
+
+#endregion
+
+#region MAIN
+
+func _ready() -> void:
+	SD_Network.register_object(self)
+	if not object:
+		object = R_WorldObject.get_placeholder()
+	
+	_item_registration()
+	
+	if object:
+		object._itemstack_instantiated(self)
+
+
+func _server_item_initialization() -> void:
+	set_durability(object.get_itemstack().durability)
+	set_max_durability(object.get_itemstack().durability_max)
+
+func _enter_tree() -> void:
+	SD_Network.register_object(self)
+	name = name.validate_node_name()
+	_slot = get_parent()
+	_inventory = _slot.get_inventory()
+	
+	_slot._item = self
+	
+	if SD_Network.is_server() and object:
+		if !_data.has("_init"):
+			_server_item_initialization()
+			_data.set("_init", true)
+	
+	_slot.item_added.emit(self)
+	_slot.item_changed.emit(self)
+	
+	_inventory._items.append(self)
+	_slot.update()
+	_slot.update_for_viewmodel()
+	
+	get_inventory().item_added.emit(self)
+	
+	_last_path = get_path()
+
+func _exit_tree() -> void:
+	get_inventory().item_removed.emit(self)
+	_slot._item = null
+	_slot.item_removed.emit(self)
+	_slot.item_changed.emit(self)
+	_slot.update()
+	_slot.update_for_viewmodel()
+	_inventory._items.erase(self)
+
+func get_data() -> Dictionary:
+	return _data
+
+func get_slot() -> SR_InventorySlot:
+	return _slot
+
+func get_inventory() -> SR_Inventory:
+	return _inventory
+
+#endregion
+
+#region ITEM
+
+func _item_registration() -> void:
+	SD_Network.register_functions([
+		
+	])
+
+func move_to(slot: SR_InventorySlot) -> void:
+	_inventory.item_move_to(self, slot)
+
+func delete() -> void:
+	if SD_Network.is_server():
+		SD_Network.call_func(_delete_net)
+
+func _delete_net() -> void:
+	SD_Nodes.fast_queue_free(self)
+
+func action_request(action: SR_ItemAction) -> void:
+	_inventory.item_action_request(self, action)
+
+func get_actions() -> Array[SR_ItemAction]:
+	return object.get_itemstack().get_actions()
+
+func drop() -> void:
+	_inventory.drop(self)
+
+static func find_serialized_items_in(node: Node) -> Array[SR_ItemStackSerialized]:
+	if node.has_meta("source_items"):
+		return node.get_meta("source_items")
+	
+	var items: Array[SR_ItemStackSerialized] = []
+	node.set_meta("source_items", items)
+	return items
+
+func serialize_and_append_to(node: Node) -> SR_ItemStackSerialized:
+	var serialized := SR_ItemStackSerialized.serialize(self)
+	find_serialized_items_in(node).append(serialized)
+	return serialized
+
+#endregion
+
+#region SERIALIZE_DESERIALIZE
+
+static func create_from_object(object: R_WorldObject) -> SR_ItemStack:
+	var result: SR_ItemStack = null
+	result = object.get_itemstack().get_custom_script().new()
+	result.object = object
+	result.name = object.id.validate_node_name()
+	return result
+
+static func create(from: Variant) -> SR_ItemStack:
+	if from is String:
+		var result: SR_ItemStack = null
+		var founded: R_WorldObject = R_WorldObject.find_by_id(from)
+		if not founded:
+			founded = R_WorldObject.get_placeholder()
+		
+		result = founded.get_itemstack().get_custom_script().new()
+		result.object = founded
+		result.name = from.id.validate_node_name()
+		return result
+	
+	if from is R_WorldObject:
+		return create_from_object(from)
+	
+	if from is SR_InitialItemStack:
+		var result: SR_ItemStack = from.get_object().get_itemstack().get_custom_script().new()
+		result.object = from.get_object()
+		result.set_quantity(from.quantity)
+		result.name = from.id.validate_node_name()
+		return result
+	
+	var p: SR_ItemStack = SR_ItemStack.new()
+	p.object = R_WorldObject.get_placeholder()
+	p.name = "placeholder"
+	return p
+
+func serialize() -> Variant:
+	var data := {}
+	data.c = (get_script() as GDScript).get_global_name()
+	data.d = get_data()
+	data.i = object.id
+	data.n = name
+	_serialize_custom(data)
+	return data
+
+func _serialize_custom(data: Dictionary) -> void:
+	pass
+
+static func deserialize(data: Variant) -> SR_ItemStack:
+	if not data is Dictionary:
+		return null
+	
+	var item: SR_ItemStack = SD_Variables.instantiate_class(data.c) as SR_ItemStack
+	item._data = data.d
+	item.object = R_WorldObject.find_by_id(data.i)
+	item.name = data.n
+	_deserialize_custom(item, data)
+	return item
+
+static func _deserialize_custom(item: SR_ItemStack, data: Dictionary) -> void:
+	pass
+
+#endregion

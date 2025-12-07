@@ -46,7 +46,7 @@ func _ready() -> void:
 			get_root_node().visible = SD_Network.is_authority(self)
 	
 	if not placeholder:
-		placeholder = load("res://Games/source_game/components/viewmodel/default.tres")
+		placeholder = load("res:///components/viewmodel/default.tres")
 	
 	if Engine.is_editor_hint():
 		return

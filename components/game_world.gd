@@ -1,6 +1,7 @@
 extends Node3D
 class_name SR_GameWorld3D
 
+const GAME_PATH:String = "res://scenes/game.tscn"
 static var instance: SR_GameWorld3D
 
 func _enter_tree() -> void:
