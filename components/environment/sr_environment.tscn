@@ -1,9 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://dm6dh5akdeuxm"]
+[gd_scene format=3 uid="uid://dm6dh5akdeuxm"]
 
 [ext_resource type="Script" uid="uid://c3quwo3gw0cpb" path="res://components/environment/sr_environment.gd" id="1_rcam2"]
-[ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="2_6urqb"]
 [ext_resource type="Shader" uid="uid://cvd0x7lon1ur6" path="res://addons/sky_3d/shaders/SkyMaterial.gdshader" id="2_g8j45"]
-[ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="3_q43c0"]
 [ext_resource type="Texture2D" uid="uid://cfqk60lpl5ljv" path="res://addons/sky_3d/assets/resources/SNoise.tres" id="3_xegy0"]
 [ext_resource type="Texture2D" uid="uid://cecwdqjol0ckd" path="res://addons/sky_3d/assets/textures/noiseClouds.png" id="4_kcnsf"]
 [ext_resource type="Texture2D" uid="uid://2r8ylu6rg5dp" path="res://addons/sky_3d/assets/thirdparty/textures/moon/MoonMap.png" id="5_6urqb"]
@@ -16,7 +14,6 @@
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="13_q43c0"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="14_3qb2d"]
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="15_iu40m"]
-[ext_resource type="Script" uid="uid://b2opomk3hntmh" path="res://addons/simusdev/network/SD_NetVariableSynchronizer.gd" id="15_q43c0"]
 
 [sub_resource type="GDScript" id="GDScript_3qb2d"]
 resource_name = "script"
@@ -38,14 +35,14 @@ func executed(commmand:SD_ConsoleCommand) -> void:
 
 [sub_resource type="Resource" id="Resource_iu40m"]
 resource_name = "time.set"
-script = ExtResource("2_6urqb")
+script = ExtResource("14_3qb2d")
 code = "time.set"
 value = "0"
 number_max_value = 24.0
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
 [sub_resource type="Resource" id="Resource_6urqb"]
-script = ExtResource("2_6urqb")
+script = ExtResource("14_3qb2d")
 code = "COMMANDSEX"
 metadata/_custom_type_script = "uid://bptu8uuecjoc5"
 
@@ -100,8 +97,8 @@ shader_parameter/cirrus_sky_tint_fade = 0.5
 shader_parameter/cirrus_intensity = 10.0
 shader_parameter/cirrus_size = 1.0
 shader_parameter/cirrus_uv = Vector2(0.16, 0.11)
-shader_parameter/cirrus_position1 = Vector2(0.36285922, 0.36285922)
-shader_parameter/cirrus_position2 = Vector2(0.36285922, 0.36285922)
+shader_parameter/cirrus_position1 = Vector2(0.2864321, 0.2864321)
+shader_parameter/cirrus_position2 = Vector2(0.2864321, 0.2864321)
 shader_parameter/cirrus_day_color = Color(0.824, 0.875, 1, 1)
 shader_parameter/cirrus_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
 shader_parameter/cirrus_night_color = Color(0.09, 0.094, 0.129, 1)
@@ -114,7 +111,7 @@ shader_parameter/cumulus_noise_freq = 2.7
 shader_parameter/cumulus_sky_tint_fade = 0.0
 shader_parameter/cumulus_intensity = 0.6
 shader_parameter/cumulus_size = 0.5
-shader_parameter/cumulus_position = Vector2(1.8143281, 1.8143281)
+shader_parameter/cumulus_position = Vector2(11.445399, 11.445399)
 shader_parameter/cumulus_texture = ExtResource("4_kcnsf")
 shader_parameter/cumulus_day_color = Color(0.823529, 0.87451, 1, 1)
 shader_parameter/cumulus_horizon_light_color = Color(0.98, 0.43, 0.15, 1)
@@ -154,7 +151,7 @@ script = ExtResource("1_rcam2")
 
 [node name="ConsoleCommands" type="Node" parent="." unique_id=2124219104]
 script = SubResource("GDScript_3qb2d")
-commands = Array[ExtResource("2_6urqb")]([SubResource("Resource_iu40m"), SubResource("Resource_6urqb")])
+commands = Array[ExtResource("14_3qb2d")]([SubResource("Resource_iu40m"), SubResource("Resource_6urqb")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
 [node name="Sky3D" type="WorldEnvironment" parent="." unique_id=884622900]
@@ -192,34 +189,12 @@ editor_time_enabled = false
 dome_path = NodePath("../SkyDome")
 minutes_per_day = 30.0
 
-[node name="TimeSync" type="Node" parent="." unique_id=476361580 node_paths=PackedStringArray("node")]
-script = ExtResource("15_q43c0")
-node = NodePath("../Sky3D")
-synchronize = Dictionary[StringName, bool]({
-&"current_time": true,
-&"minutes_per_day": true
-})
-channel = &"environment"
-tickrate = 1.0
-_editor_initialize = true
-metadata/_custom_type_script = "uid://b2opomk3hntmh"
-
-[node name="DateSync" type="Node" parent="." unique_id=1158769158 node_paths=PackedStringArray("node")]
-script = ExtResource("15_q43c0")
-node = NodePath("../Sky3D/TimeOfDay")
-synchronize = Dictionary[StringName, bool]({
-&"day": true,
-&"month": true,
-&"year": true
-})
-channel = &"environment"
-tickrate = 1.0
-_editor_initialize = true
-metadata/_custom_type_script = "uid://b2opomk3hntmh"
-
 [node name="SD_NodeConsoleCommands" type="Node" parent="." unique_id=380234543]
 script = ExtResource("13_q43c0")
 commands = Array[ExtResource("14_3qb2d")]([SubResource("Resource_xsr88")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
+[node name="Timer" type="Timer" parent="." unique_id=1665710244]
+
 [connection signal="on_executed" from="SD_NodeConsoleCommands" to="." method="_on_sd_node_console_commands_on_executed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -29,6 +29,17 @@ var _recieved_changes: Dictionary[StringName, Variant] = {}
 func _on_editor_initialize() -> void:
 	pass
 
+func add_property(property: StringName) -> void:
+	if property in synchronize:
+		return
+	
+	synchronize[property] = true
+	
+
+func remove_property(property: StringName) -> void:
+	if property in synchronize:
+		synchronize.erase(property)
+
 func _ready() -> void:
 	if !node:
 		if owner:

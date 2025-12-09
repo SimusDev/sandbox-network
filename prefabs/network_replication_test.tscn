@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://446f0y1mo2cd"]
+
+[ext_resource type="Script" uid="uid://bg131oddkxjn6" path="res://prefabs/network_replication_test.gd" id="1_ej3ap"]
+
+[sub_resource type="Animation" id="Animation_ej3ap"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y8kgn"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(2, 2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vh7nq"]
+_data = {
+&"RESET": SubResource("Animation_ej3ap"),
+&"idle": SubResource("Animation_y8kgn")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_4xvhn"]
+
+[node name="NetworkReplicationTest" type="Node3D" unique_id=1884071386]
+script = ExtResource("1_ej3ap")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1075811690]
+libraries/ = SubResource("AnimationLibrary_vh7nq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1428137729]
+mesh = SubResource("BoxMesh_4xvhn")
+
+[node name="Timer" type="Timer" parent="." unique_id=1362912092]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

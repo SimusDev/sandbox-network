@@ -2,7 +2,6 @@ extends Node
 class_name SR_Entity
 
 @export var root: Node3D
-@export var synchronizer: SD_NetPositionSynchronizer
 
 func _ready() -> void:
 	SD_Components.append_to(root, self)
@@ -10,9 +9,7 @@ func _ready() -> void:
 	if !root:
 		root = get_parent()
 	
-	synchronizer = _create_component(synchronizer, SD_NetPositionSynchronizer, "synchronizer")
-	synchronizer.tickrate = 64.0
-	synchronizer.node = root
+	SD_NetworkReplicator.attach_or_get(root).set_transform_tickrate(64)
 	
 	if root is PhysicsBody3D:
 		SR_Collisions.clear_body_collisions(root)

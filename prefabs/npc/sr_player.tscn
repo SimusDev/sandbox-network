@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dk45eqctyampm"]
+[gd_scene format=3 uid="uid://dk45eqctyampm"]
 
 [ext_resource type="PackedScene" uid="uid://t62b665bvj0s" path="res://prefabs/npc/sr_stalker.tscn" id="1_6y6mw"]
 [ext_resource type="Script" uid="uid://dylvk0a6ks12x" path="res://components/player/SR_Playable.gd" id="2_fc3xa"]
@@ -34,8 +34,9 @@ script = ExtResource("2_h5nho")
 commands = Array[ExtResource("3_74ym1")]([SubResource("Resource_ht26s")])
 metadata/_custom_type_script = "uid://38osx81mny15"
 
-[node name="playable" type="Node" parent="." index="1" unique_id=1187433176 node_paths=PackedStringArray("root")]
+[node name="playable" type="Node" parent="." index="1" unique_id=1187433176 node_paths=PackedStringArray("entity", "root")]
 script = ExtResource("2_fc3xa")
+entity = NodePath("../SR_LivingEntity")
 root = NodePath("..")
 metadata/_custom_type_script = "uid://dylvk0a6ks12x"
 
