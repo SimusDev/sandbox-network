@@ -89,15 +89,6 @@ func send_active_node_to_all(node: Object) -> void:
 @rpc("any_peer", "call_local", "reliable", SD_NetworkSingleton.CHANNEL.NODE)
 func _recieve_node_from_peer(node: Variant) -> void:
 	var sender_id: int = multiplayer.get_remote_sender_id()
-	
-	#if !get_active_peer_and_his_nodes().has(sender_id):
-		#get_active_peer_and_his_nodes()[sender_id] = []
-	#
-	#var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
-	#
-	#if not nodes.has(node):
-		#nodes.append(node)
-	
 	var object: Object = singleton.cache.deserialize_node_reference(node)
 	if object:
 		var net := SD_NetRegisteredNode.get_or_create(object)
@@ -111,15 +102,6 @@ func delete_active_node_from_all(node: Object) -> void:
 @rpc("any_peer", "call_local", "reliable", SD_NetworkSingleton.CHANNEL.NODE)
 func _delete_node_from_peer(node: Variant) -> void:
 	var sender_id: int = multiplayer.get_remote_sender_id()
-	
-	#if !get_active_peer_and_his_nodes().has(sender_id):
-		#get_active_peer_and_his_nodes()[sender_id] = []
-	#
-	#var nodes: Array = get_active_peer_and_his_nodes()[sender_id]
-	#
-	#if nodes.has(node):
-		#nodes.erase(node)
-	
 	var object: Object = singleton.cache.deserialize_node_reference(node)
 	if object:
 		var net := SD_NetRegisteredNode.get_or_create(object)
