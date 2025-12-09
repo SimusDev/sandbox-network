@@ -105,7 +105,8 @@ func _recieve_node_from_peer(node: Variant) -> void:
 		net.activated_for_peer.emit(sender_id)
 
 func delete_active_node_from_all(node: Object) -> void:
-	_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
+	if is_inside_tree():
+		_delete_node_from_peer.rpc(SD_Network.singleton.cache.serialize_node_reference(node))
 
 @rpc("any_peer", "call_local", "reliable", SD_NetworkSingleton.CHANNEL.NODE)
 func _delete_node_from_peer(node: Variant) -> void:

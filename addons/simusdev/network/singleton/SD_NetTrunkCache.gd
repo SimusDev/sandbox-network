@@ -225,8 +225,9 @@ func try_uncache_node(path: NodePath) -> void:
 	#cache_by_id.erase(net_id)
 	#cache_by_path.erase(path)
 	
-	_client_uncache(net_id, path)
-	_client_uncache.rpc(net_id, path)
+	if is_inside_tree():
+		_client_uncache(net_id, path)
+		_client_uncache.rpc(net_id, path)
 	
 	#debug_print("node removed from cache: %s [%s]" % [str(path), str(net_id)], SD_ConsoleCategories.CATEGORY.INFO)
 

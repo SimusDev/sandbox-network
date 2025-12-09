@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SR_ServerAuthData" load_steps=8 format=3]
+[gd_resource type="Resource" script_class="SR_ServerAuthData" format=3]
 
 [ext_resource type="Script" path="res://components/data/sr_server_auth_data.gd" id="1_53rd5"]
 [ext_resource type="Script" path="res://components/data/r_user_data.gd" id="2_bl1o6"]

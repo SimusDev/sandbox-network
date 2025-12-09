@@ -96,6 +96,7 @@ _editor_initialize = true
 metadata/_custom_type_script = "uid://cnl3gha0ra746"
 
 [node name="gun" parent="Camera" index="2" unique_id=136496866 node_paths=PackedStringArray("entity") instance=ExtResource("10_h5nho")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.02, 0.495)
 entity = NodePath("../..")
 
 [node name="crouch_pos" type="Node3D" parent="." index="8" unique_id=2117828044]
