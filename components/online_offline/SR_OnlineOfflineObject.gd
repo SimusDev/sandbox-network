@@ -16,9 +16,9 @@ func set_online(value: bool = true) -> SR_OnlineOfflineObject:
 	_online = value
 	
 	if not _online:
-		owner.process_mode = Node.PROCESS_MODE_DISABLED
+		owner.set_process_mode.call_deferred(Node.PROCESS_MODE_DISABLED)
 	else:
-		owner.process_mode = Node.PROCESS_MODE_INHERIT
+		owner.set_process_mode.call_deferred(Node.PROCESS_MODE_INHERIT)
 		
 	
 	status_changed.emit()

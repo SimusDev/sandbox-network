@@ -46,7 +46,8 @@ static func get_active_camera_list() -> Array[W_FPCSourceLikeCamera]:
 func _exit_tree() -> void:
 	super()
 	
-	enabled = false
+	if is_authority():
+		enabled = false
 	
 	if !_active_camera_list.is_empty():
 		var camera: W_FPCSourceLikeCamera = _active_camera_list[_active_camera_list.size() - 1]
@@ -57,6 +58,9 @@ func _exit_tree() -> void:
 
 func _enter_tree() -> void:
 	super()
+	
+	if is_authority():
+		enabled = true
 
 func make_current() -> void:
 	if camera:
@@ -69,6 +73,7 @@ func set_current(value: bool) -> void:
 		enabled = true
 
 func _enabled_status_changed() -> void:
+	
 	if enabled:
 		
 		for i in get_instance_list():
@@ -87,6 +92,8 @@ func _enabled_status_changed() -> void:
 	
 	if is_authority():
 		set_mouse_captured(enabled)
+	
+	
 
 func _ready() -> void:
 	SD_Network.register_object(self)

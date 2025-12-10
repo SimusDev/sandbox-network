@@ -1,6 +1,7 @@
 extends Node
 class_name SR_Playable
 
+@export var entity: SR_LivingEntity
 @export var root: Node
 
 static var _local: SR_Playable = null
@@ -26,6 +27,11 @@ func _ready() -> void:
 	
 	if is_local():
 		S_EventBus.publish(S_EventBus.event_player_spawn_local, {"playable": self})
+	
+	if !root.is_node_ready():
+		await root.ready
+	
+	
 
 func _enter_tree() -> void:
 	if not root:

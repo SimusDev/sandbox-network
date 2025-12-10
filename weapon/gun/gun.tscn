@@ -1,19 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ycqga2odxtc"]
+[gd_scene format=3 uid="uid://c4ycqga2odxtc"]
 
-[ext_resource type="Script" uid="uid://doewumcc5625k" path="res://components/weapon/sr_item_weapon.gd" id="1_vxgow"]
+[ext_resource type="Script" uid="uid://doewumcc5625k" path="res://components/weapon/sr_item_weapon_projectile.gd" id="1_vxgow"]
 [ext_resource type="Resource" uid="uid://ls55oo7ysu22" path="res://objects/weapons/ak47.tres" id="2_06c42"]
-[ext_resource type="PackedScene" uid="uid://dgriur3thykid" path="res://models/weapon/ak47/ak47.tscn" id="3_2ddov"]
+[ext_resource type="PackedScene" uid="uid://bqja0wisoc2hi" path="res://models/weapon/ak47u/model.tscn" id="3_vxgow"]
 
 [node name="gun" type="Node3D" unique_id=136496866]
 script = ExtResource("1_vxgow")
 object = ExtResource("2_06c42")
 metadata/_custom_type_script = "uid://doewumcc5625k"
 
-[node name="Sketchfab_Scene4" parent="." unique_id=1555753663 instance=ExtResource("3_2ddov")]
-transform = Transform3D(0.9953962, 0, -0.09584575, 0, 1, 0, 0.09584575, 0, 0.9953962, 0.135, -0.295, 0)
-
-[node name="Skeleton3D" parent="Sketchfab_Scene4/Sketchfab_model/cf590c7c3e014b99a3a426d56e23488a_fbx/Object_2/RootNode/hud_skelet/Object_5" parent_id_path=PackedInt32Array(1555753663, 718541203) index="0" unique_id=441604500]
-bones/23/rotation = Quaternion(-0.14129587, -0.14173375, 0.25940704, 0.94480425)
-bones/50/rotation = Quaternion(0.39167908, 0.62814105, 0.54965794, -0.3871724)
-
-[editable path="Sketchfab_Scene4"]
+[node name="untitled" parent="." unique_id=994425080 instance=ExtResource("3_vxgow")]

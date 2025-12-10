@@ -36,7 +36,7 @@ func _init_states() -> void:
 	state_reload = state_machine.create_state("reload")
 
 func _on_state_enter(state: SD_FiniteState) -> void:
-	print('state enter: ', state)
+	pass
 	
 	match state:
 		state_reload:
@@ -44,7 +44,7 @@ func _on_state_enter(state: SD_FiniteState) -> void:
 		
 
 func _on_state_exit(state: SD_FiniteState) -> void:
-	print('state exit: ', state)
+	pass
 
 func _local_input(event: InputEvent) -> void:
 	super(event)
