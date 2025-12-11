@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cytxvvulkl1my"]
+
+[ext_resource type="Script" uid="uid://cg5724r2tb6h0" path="res://components/animation/sr_animated_model.gd" id="1_j0mxd"]
+[ext_resource type="PackedScene" uid="uid://dm5yseixmfy5i" path="res://models/human/sviter/sviter.tscn" id="2_87soe"]
+[ext_resource type="AnimationLibrary" uid="uid://dwt0m0jubdpxm" path="res://animations/human/animation.res" id="3_ntx0t"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cc57rtau04puw" path="res://animations/human/blend_tree.tres" id="4_ckt68"]
+
+[node name="Model" type="Node3D" unique_id=1906016949 node_paths=PackedStringArray("root", "model", "tree", "player", "skeleton")]
+script = ExtResource("1_j0mxd")
+root = NodePath(".")
+model_scene = ExtResource("2_87soe")
+library = ExtResource("3_ntx0t")
+blend_tree = ExtResource("4_ckt68")
+model = NodePath("model3d")
+tree = NodePath("AnimationTree")
+player = NodePath("AnimationPlayer")
+skeleton = NodePath("model3d/sviter_3_ARM/Skeleton3D")
+metadata/_custom_type_script = "uid://cg5724r2tb6h0"
+
+[node name="model3d" parent="." unique_id=1223013522 instance=ExtResource("2_87soe")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1451632326]
+root_node = NodePath("../model3d")
+libraries/animation = ExtResource("3_ntx0t")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1853279737]
+root_node = NodePath("../model3d")
+tree_root = ExtResource("4_ckt68")
+anim_player = NodePath("../AnimationPlayer")

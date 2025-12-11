@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://byj76k452xx7v"]
+[gd_scene format=3 uid="uid://byj76k452xx7v"]
 
 [ext_resource type="Script" uid="uid://qp8m6jiksgwr" path="res://ui/lobby/lobby.gd" id="1_l4sf2"]
 [ext_resource type="Script" uid="uid://chbcwxo8qw76" path="res://addons/simusdev/ui/SD_UIScreenSwitcher.gd" id="2_8l8ni"]

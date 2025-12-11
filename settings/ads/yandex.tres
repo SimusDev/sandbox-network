@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="SD_SettingsAdsSDKYandex" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="SD_SettingsAdsSDKYandex" format=3 uid="uid://des1rb4jo4fgw"]
 
-[ext_resource type="Script" path="res://addons/simusdev/monetization/settings/sdk/SD_SettingsAdsSDKYandex.gd" id="1_228gg"]
+[ext_resource type="Script" uid="uid://cvn7yt3fhlw1h" path="res://addons/simusdev/monetization/settings/sdk/SD_SettingsAdsSDKYandex.gd" id="1_228gg"]
 
 [resource]
 script = ExtResource("1_228gg")

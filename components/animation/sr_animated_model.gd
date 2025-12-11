@@ -1,0 +1,3 @@
+@tool
+extends W_AnimatedModel3D
+class_name SR_AnimatedModel3D

@@ -12,27 +12,6 @@ func _ready() -> void:
 	#else:
 		#SD_Network.create_client(ip, port)
 	
-	
-	var peer: StreamPeer = StreamPeerBuffer.new()
-	var instance_id: int = get_instance_id()
-	var method_id: int = 10
-	
-	peer.big_endian = true
-	
-	print("instance: ", instance_id)
-	print("method: ", method_id)
-	
-	peer.put_32(instance_id)  
-	peer.put_u16(method_id)   
-	
-	peer.seek(0)
-	
-	var received_instance_id: int = peer.get_32() 
-	var received_method_id: int = peer.get_u16() 
-	
-	print("recieved instance: ", received_instance_id)
-	print("recieved method: ", received_method_id)
-	
 
 func start_game() -> void:
 	get_tree().change_scene_to_file.call_deferred("res://scenes/game.tscn")
