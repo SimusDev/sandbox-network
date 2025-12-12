@@ -55,7 +55,7 @@ func _exit_tree() -> void:
 		if is_local():
 			S_EventBus.publish(S_EventBus.event_player_despawn_local, {"playable": self})
 
-static func find_above(node:Node) -> SR_Playable:
+static func find_above(_node:Node) -> SR_Playable:
 	return null
 
 #test govna. remove this method next time

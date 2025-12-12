@@ -3,9 +3,9 @@ class_name SR_LevelHandler
 
 @export_dir var levels_path: String
 
-@export var _lobby: R_Level3D
-
-var _lobby_level: SR_Level3D
+#@export var _lobby: R_Level3D
+#
+#var _lobby_level: SR_Level3D
 
 static var __instance: SR_LevelHandler
 

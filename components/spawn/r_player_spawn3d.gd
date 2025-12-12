@@ -16,6 +16,7 @@ func get_default_tab() -> R_Tab:
 	return R_Tab.create_global("player_spawn")
 
 func register() -> void:
+	
 	super()
 	
 	if not level:

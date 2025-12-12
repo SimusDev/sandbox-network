@@ -43,7 +43,7 @@ func _on_state_enter(state: SD_FiniteState) -> void:
 			event_reload.emit()
 		
 
-func _on_state_exit(state: SD_FiniteState) -> void:
+func _on_state_exit(_state: SD_FiniteState) -> void:
 	pass
 
 func _local_input(event: InputEvent) -> void:

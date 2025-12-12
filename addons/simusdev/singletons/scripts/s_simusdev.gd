@@ -101,7 +101,10 @@ func _ready() -> void:
 				multiplayerAPI.name = "Multiplayer"
 		)
 		add_child(multiplayerAPI)
-		
+	
+	var simusnet_scene: PackedScene = load("res://addons/simusdev/SimusNet/singletons/SimusNetSingleton.tscn")
+	var simusnet: SimusNetSingleton = simusnet_scene.instantiate() as SimusNetSingleton
+	add_child(simusnet)
 
 func _initialize_commands() -> void:
 	console.on_command_executed.connect(_on_command_executed)

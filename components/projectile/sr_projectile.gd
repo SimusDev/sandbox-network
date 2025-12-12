@@ -77,7 +77,7 @@ func apply_forces(delta:float) -> void:
 		current_velocity = current_velocity.normalized() * speed
 	pass
 
-func _handle_collision(collider:Node3D, hit_position:Vector3) -> void:
+func _handle_collision(collider:Node3D, _hit_position:Vector3) -> void:
 	current_velocity *= 0.5
 	health -= 20.0
 	
