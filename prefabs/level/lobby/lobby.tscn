@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjudw6u85253o"]
+[gd_scene format=3 uid="uid://bjudw6u85253o"]
 
 [ext_resource type="Texture2D" uid="uid://bu7otfqxvfvmi" path="res://addons/kenney_prototype_textures/dark/texture_08.png" id="2_5o1jg"]
 [ext_resource type="PackedScene" uid="uid://byj76k452xx7v" path="res://ui/lobby/lobby.tscn" id="2_7hv5o"]

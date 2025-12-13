@@ -25,5 +25,6 @@ func _ready() -> void:
 		body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node3D) -> void:
-	(load(level_id) as R_Level3D).get_local_instance().teleport(body)
-	body.position = to_position
+	if SD_Network.is_server():
+		(load(level_id) as R_Level3D).get_local_instance().teleport(body)
+		body.position = to_position

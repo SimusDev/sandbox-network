@@ -37,7 +37,7 @@ func _initialize_level_sections() -> void:
 	
 	
 	for tab_name in R_Tab.get_globals():
-		var tab: R_Tab = R_Tab.get_globals()[tab_name]
+		var _tab: R_Tab = R_Tab.get_globals()[tab_name]
 		var section: SR_LevelSection3D = SR_LevelSection3D.new()
 		section.name = tab_name
 		add_child(section)

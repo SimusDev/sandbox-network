@@ -19,7 +19,13 @@ var total_distance:float = 0.0
 var health:float = 100.0
 var is_hit:bool = false
 
+var instance: I_ObjectInstance
+var object: R_Projectile
+
 func _ready() -> void:
+	instance = I_ObjectInstance.find_in(self)
+	object = instance.object as R_Projectile
+	
 	#bullet_fly_direction = -entity.global_transform.basis.z.normalized()
 	current_velocity = bullet_fly_direction * speed
 	#speed = projectile_object.speed
@@ -71,7 +77,7 @@ func apply_forces(delta:float) -> void:
 		current_velocity = current_velocity.normalized() * speed
 	pass
 
-func _handle_collision(collider:Node3D, hit_position:Vector3) -> void:
+func _handle_collision(collider:Node3D, _hit_position:Vector3) -> void:
 	current_velocity *= 0.5
 	health -= 20.0
 	

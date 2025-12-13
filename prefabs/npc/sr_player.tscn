@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dk45eqctyampm"]
 
-[ext_resource type="PackedScene" uid="uid://t62b665bvj0s" path="res://prefabs/npc/sr_stalker.tscn" id="1_6y6mw"]
+[ext_resource type="PackedScene" uid="uid://t62b665bvj0s" path="res://prefabs/npc/sr_human.tscn" id="1_6y6mw"]
 [ext_resource type="Script" uid="uid://dylvk0a6ks12x" path="res://components/player/SR_Playable.gd" id="2_fc3xa"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="2_h5nho"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="3_74ym1"]
@@ -8,11 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="4_3611e"]
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="4_y8bwe"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="5_3611e"]
-[ext_resource type="Script" uid="uid://cnl3gha0ra746" path="res://addons/simusdev/network/SD_NetPositionSynchronizer.gd" id="6_vv6yp"]
 [ext_resource type="PackedScene" uid="uid://c4ycqga2odxtc" path="res://weapon/gun/gun.tscn" id="10_h5nho"]
+[ext_resource type="Script" uid="uid://cp5hfswiyi4g0" path="res://addons/simusdev/network/SD_NetworkTransform.gd" id="10_y8bwe"]
 [ext_resource type="Script" uid="uid://cacpikkbdlubj" path="res://components/ui/mp_canvas.gd" id="11_evg7k"]
 [ext_resource type="Script" uid="uid://bj11a8fjqjato" path="res://components/viewmodel/viewmodel_root3d.gd" id="11_y8bwe"]
 [ext_resource type="PackedScene" uid="uid://fl2cplwq55e4" path="res://ui/player/player_ui.tscn" id="12_74ym1"]
+[ext_resource type="PackedScene" uid="uid://cytxvvulkl1my" path="res://models/human/sviter/model.tscn" id="13_y8bwe"]
 
 [sub_resource type="Resource" id="Resource_ht26s"]
 script = ExtResource("3_74ym1")
@@ -42,6 +43,7 @@ root = NodePath("..")
 metadata/_custom_type_script = "uid://dylvk0a6ks12x"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=1417165171]
+visible = false
 mesh = SubResource("CapsuleMesh_6y6mw")
 
 [node name="collision_normal" type="CollisionShape3D" parent="." index="3" unique_id=1827877323]
@@ -80,23 +82,7 @@ key_right = "move_right"
 key_boost = "sprint"
 key_slowdown = "crouch"
 
-[node name="sync" type="Node" parent="Camera" index="1" unique_id=451001271 node_paths=PackedStringArray("node")]
-script = ExtResource("6_vv6yp")
-node = NodePath("..")
-interpolation = true
-synchronize = Dictionary[StringName, bool]({
-&"position": true,
-&"rotation": true,
-&"scale": true
-})
-channel = &"position"
-tickrate = 32.0
-transfer_mode = 0
-allow_serialize = false
-_editor_initialize = true
-metadata/_custom_type_script = "uid://cnl3gha0ra746"
-
-[node name="gun" parent="Camera" index="2" unique_id=136496866 node_paths=PackedStringArray("entity") instance=ExtResource("10_h5nho")]
+[node name="gun" parent="Camera" index="1" unique_id=136496866 node_paths=PackedStringArray("entity") instance=ExtResource("10_h5nho")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.02, 0.495)
 entity = NodePath("../..")
 
@@ -104,6 +90,11 @@ entity = NodePath("../..")
 script = ExtResource("11_y8bwe")
 type = 0
 metadata/_custom_type_script = "uid://bj11a8fjqjato"
+[node name="SD_NetworkTransform" type="Node" parent="Camera" index="2" unique_id=731526615 node_paths=PackedStringArray("node")]
+script = ExtResource("10_y8bwe")
+node = NodePath("..")
+_editor_initialize = true
+metadata/_custom_type_script = "uid://cp5hfswiyi4g0"
 
 [node name="crouch_pos" type="Node3D" parent="." index="8" unique_id=2117828044]
 
@@ -118,6 +109,8 @@ private = true
 script = ExtResource("11_evg7k")
 scene = ExtResource("12_74ym1")
 metadata/_custom_type_script = "uid://cacpikkbdlubj"
+
+[node name="Model" parent="." index="13" unique_id=1906016949 instance=ExtResource("13_y8bwe")]
 
 [connection signal="on_executed" from="commands" to="playable" method="_on_commands_on_executed"]
 

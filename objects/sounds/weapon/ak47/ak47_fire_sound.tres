@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="R_Sound3D" format=3 uid="uid://blyqwyt4pvbph"]
+[gd_resource type="Resource" script_class="R_Sound3D" load_steps=6 format=3 uid="uid://blyqwyt4pvbph"]
 
 [ext_resource type="Texture2D" uid="uid://4x51hbmje0si" path="res://addons/simusdev/icons/AudioStreamWAV.svg" id="1_jffen"]
 [ext_resource type="Script" uid="uid://d2e1osl75ausn" path="res://components/sound/r_soundpack3d.gd" id="1_l44re"]

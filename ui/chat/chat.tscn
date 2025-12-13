@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dublgl4t47byu"]
+
+[ext_resource type="Script" uid="uid://chvqr1wo64wnp" path="res://ui/chat/chat.gd" id="1_52lgs"]
+[ext_resource type="Script" uid="uid://d1l1jkmj6s53f" path="res://addons/simusdev/ui/SD_UIInterfaceMenu.gd" id="2_8u8bs"]
+[ext_resource type="PackedScene" uid="uid://c5aueahwj584q" path="res://ui/chat/panel.tscn" id="3_8u8bs"]
+
+[node name="Chat" type="Control" unique_id=1889013621]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_52lgs")
+
+[node name="SD_UIInterfaceMenu" type="Node" parent="." unique_id=1011621066 node_paths=PackedStringArray("target")]
+script = ExtResource("2_8u8bs")
+target = NodePath("..")
+input_action = "chat"
+metadata/_custom_type_script = "uid://d1l1jkmj6s53f"
+
+[node name="Panel" parent="." unique_id=1901598877 instance=ExtResource("3_8u8bs")]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 428.0
+offset_right = 532.0
+offset_bottom = 640.0

@@ -3,7 +3,7 @@ class_name SR_LevelSection3D
 
 var _level: SR_Level3D
 
-var _list: Dictionary
+#var _list: Dictionary
 
 var networked: bool = true : set = set_networked
 

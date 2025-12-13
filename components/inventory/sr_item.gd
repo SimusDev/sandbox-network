@@ -38,10 +38,10 @@ func _ready() -> void:
 	_item_ready()
 
 
-func _on_state_enter(state: SD_FiniteState) -> void:
+func _on_state_enter(_state: SD_FiniteState) -> void:
 	pass
 
-func _on_state_exit(state: SD_FiniteState) -> void:
+func _on_state_exit(_state: SD_FiniteState) -> void:
 	pass
 
 func _item_ready() -> void:

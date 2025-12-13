@@ -13,14 +13,14 @@ static func get_default() -> R_Tab:
 static func get_globals() -> Dictionary[String, R_Tab]:
 	return _globals
 
-static func create_global(id: String) -> R_Tab:
-	if _globals.has(id):
-		return _globals.get(id)
+static func create_global(tid: String) -> R_Tab:
+	if _globals.has(tid):
+		return _globals.get(tid)
 	
 	var new := R_Tab.new()
-	new.id = id
+	new.id = tid
 	new.register()
-	_globals[id] = new
+	_globals[tid] = new
 	return new
 
 func get_objects() -> Array[R_Object]:

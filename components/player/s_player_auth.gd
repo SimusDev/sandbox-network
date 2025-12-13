@@ -7,6 +7,7 @@ enum ERROR
 {
 	PASSWORD_EMPTY,
 	INCORRECT_PASSWORD,
+	USER_ALREADY_ONLINE,
 }
 
 @onready var cmd_login: SD_ConsoleCommand = SD_ConsoleCommand.get_or_create("login", "user")
@@ -20,6 +21,8 @@ signal on_error(error: ERROR)
 signal on_success()
 
 var _logged_and_active: bool = false
+
+static var _cooldown := SD_CooldownTimer.new()
 
 static func is_logged_and_active() -> bool:
 	return _instance._logged_and_active
@@ -36,15 +39,24 @@ func _initialized() -> void:
 	
 	if SD_Network.is_server():
 		SD_Network.singleton.on_player_disconnected.connect(_on_player_disconnected)
-	
+		
 	SD_Network.register_functions([
 		_request_login_rpc,
 	])
+	
+	
 
 func _on_player_disconnected(player: SD_NetworkPlayer) -> void:
-	pass
+	var user: R_UserData = data.find_by_peer_id(player.get_peer_id())
+	if user:
+		user.active = false
 
 static func request_login(login: String, password: String) -> void:
+	if _cooldown.is_active():
+		return
+	
+	_cooldown.start(1)
+	
 	_instance.cmd_login.set_value(login)
 	_instance.cmd_password.set_value(password)
 	
@@ -63,7 +75,12 @@ func _request_login_rpc(login: String, password: String) -> void:
 	var user: R_UserData = data.find_by_name(login)
 	if user:
 		if user.password == password:
+			if user.active:
+				_server_throw_error_to(sender, ERROR.USER_ALREADY_ONLINE)
+				return
+			
 			user.peer = sender
+			user.active = true
 			_server_throw_success_to(sender)
 		else:
 			_server_throw_error_to(sender, ERROR.INCORRECT_PASSWORD)
@@ -73,8 +90,10 @@ func _request_login_rpc(login: String, password: String) -> void:
 	new_user.peer = sender
 	new_user.name = login
 	new_user.password = password
+	new_user.active = true
 	data.users.append(new_user)
 	data.save()
+	_server_throw_success_to(sender)
 
 static func _server_throw_error_to(peer: int, error: ERROR) -> void:
 	if SD_Network.is_server():
@@ -97,7 +116,6 @@ static func register_error_callback(method: Callable) -> void:
 
 static func register_success_callback(method: Callable) -> void:
 	_instance.on_success.connect(method)
-	
 
 func _exit_tree() -> void:
 	if SD_Network.is_server():

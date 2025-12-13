@@ -12,7 +12,7 @@ var item: SR_Item
 
 var entity: SR_Entity
 
-func reset(val: bool = true) -> void:
+func reset(_val: bool = true) -> void:
 	hooks.clear()
 	for i in get_children():
 		queue_free()

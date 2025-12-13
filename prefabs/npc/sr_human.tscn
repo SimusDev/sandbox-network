@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://t62b665bvj0s"]
+
+[ext_resource type="PackedScene" uid="uid://n1vwd8f0lue8" path="res://prefabs/npc/sr_npc.tscn" id="1_pv8nm"]
+
+[node name="SR_Human" unique_id=1194893380 instance=ExtResource("1_pv8nm")]
