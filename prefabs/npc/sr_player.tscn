@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c4ycqga2odxtc" path="res://weapon/gun/gun.tscn" id="10_h5nho"]
 [ext_resource type="Script" uid="uid://cp5hfswiyi4g0" path="res://addons/simusdev/network/SD_NetworkTransform.gd" id="10_y8bwe"]
 [ext_resource type="Script" uid="uid://cacpikkbdlubj" path="res://components/ui/mp_canvas.gd" id="11_evg7k"]
+[ext_resource type="Script" uid="uid://bj11a8fjqjato" path="res://components/viewmodel/viewmodel_root3d.gd" id="11_y8bwe"]
 [ext_resource type="PackedScene" uid="uid://fl2cplwq55e4" path="res://ui/player/player_ui.tscn" id="12_74ym1"]
 [ext_resource type="PackedScene" uid="uid://cytxvvulkl1my" path="res://models/human/sviter/model.tscn" id="13_y8bwe"]
 
@@ -50,7 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.001083374, 0)
 shape = SubResource("BoxShape3D_3611e")
 
 [node name="collision_crouch" type="CollisionShape3D" parent="." index="4" unique_id=933330022]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45375824, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04624176, 0)
 shape = SubResource("BoxShape3D_vv6yp")
 
 [node name="Movement" parent="." index="5" unique_id=1719251359 node_paths=PackedStringArray("actor") instance=ExtResource("3_m58q1")]
@@ -85,6 +86,10 @@ key_slowdown = "crouch"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.02, 0.495)
 entity = NodePath("../..")
 
+[node name="ViewModelRoot3D" type="Node3D" parent="Camera" index="3" unique_id=1542211132]
+script = ExtResource("11_y8bwe")
+type = 0
+metadata/_custom_type_script = "uid://bj11a8fjqjato"
 [node name="SD_NetworkTransform" type="Node" parent="Camera" index="2" unique_id=731526615 node_paths=PackedStringArray("node")]
 script = ExtResource("10_y8bwe")
 node = NodePath("..")
@@ -96,7 +101,11 @@ metadata/_custom_type_script = "uid://cp5hfswiyi4g0"
 [node name="ceilling_detection" type="RayCast3D" parent="." index="9" unique_id=675193938]
 target_position = Vector3(0, 1, 0)
 
-[node name="MP_CanvasLayer" type="CanvasLayer" parent="." index="12" unique_id=571300044]
+[node name="SR_Inventory" parent="." index="12" unique_id=371164809 node_paths=PackedStringArray("root")]
+root = NodePath("..")
+private = true
+
+[node name="MP_CanvasLayer" type="CanvasLayer" parent="." index="13" unique_id=571300044]
 script = ExtResource("11_evg7k")
 scene = ExtResource("12_74ym1")
 metadata/_custom_type_script = "uid://cacpikkbdlubj"

@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3hpm5f60u5kt"]
+
+[ext_resource type="Texture2D" uid="uid://beda6yqrsg62j" path="res://weapon/gun/icon.png" id="1_m57sd"]
+[ext_resource type="Script" uid="uid://c7n8rn50uhr2a" path="res://ui/inventory/scripts/slot.gd" id="1_rpgnv"]
+[ext_resource type="Script" uid="uid://cd7nerhuuyfo3" path="res://components/inventory/sr_item_action.gd" id="2_cwfcg"]
+[ext_resource type="Script" uid="uid://bmwl6ctnkt45h" path="res://addons/simusdev/ui/SD_UIDragAndDrop.gd" id="2_fl40y"]
+[ext_resource type="Script" uid="uid://d31rnnfvjaonu" path="res://actions/item/drop.gd" id="3_np2bs"]
+
+[sub_resource type="Resource" id="Resource_4pagg"]
+script = ExtResource("3_np2bs")
+metadata/_custom_type_script = "uid://d31rnnfvjaonu"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m57sd"]
+bg_color = Color(0.13319641, 0.13319641, 0.13319635, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[node name="Slot" type="Control" unique_id=919963444]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1092.0
+offset_bottom = -588.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rpgnv")
+item_binds = Dictionary[String, ExtResource("2_cwfcg")]({
+"sr.quick_drop": SubResource("Resource_4pagg")
+})
+
+[node name="SD_UIDragAndDrop" type="Node2D" parent="." unique_id=767773298 node_paths=PackedStringArray("input_node", "draggable_node", "drop_node", "preview_node")]
+script = ExtResource("2_fl40y")
+input_node = NodePath("..")
+draggable_node = NodePath("../Icon")
+drop_node = NodePath("..")
+preview_node = NodePath("../Icon")
+metadata/_custom_type_script = "uid://bmwl6ctnkt45h"
+
+[node name="Panel" type="Panel" parent="." unique_id=146584586]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m57sd")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1597646148]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m57sd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Quantity" type="Label" parent="Icon" unique_id=523599586]
+layout_mode = 0
+anchor_left = -0.04
+anchor_top = 0.64
+anchor_right = 1.02
+anchor_bottom = 1.1
+text = "1"
+metadata/_edit_use_anchors_ = true

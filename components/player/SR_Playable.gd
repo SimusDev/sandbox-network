@@ -4,6 +4,8 @@ class_name SR_Playable
 @export var entity: SR_LivingEntity
 @export var root: Node
 
+static var _local: SR_Playable = null
+
 var level: SR_Level3D
 
 var input: SD_NodeInput
@@ -57,6 +59,12 @@ func _exit_tree() -> void:
 
 static func find_above(_node:Node) -> SR_Playable:
 	return null
+
+static func get_local() -> SR_Playable:
+	return _local
+
+func is_local() -> bool:
+	return self == get_local()
 
 #test govna. remove this method next time
 func _on_commands_on_executed(command: SD_ConsoleCommand) -> void:

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://t62b665bvj0s"]
+
+[ext_resource type="PackedScene" uid="uid://n1vwd8f0lue8" path="res://prefabs/npc/sr_npc.tscn" id="1_x5dv4"]
+[ext_resource type="Script" uid="uid://dayggrck4khl3" path="res://components/inventory/sr_inventory.gd" id="2_sl8pk"]
+[ext_resource type="Script" uid="uid://cq4xrj0ijwyea" path="res://components/inventory/sr_inventory_slot_switcher.gd" id="3_4uypb"]
+
+[node name="SR_Stalker" unique_id=1194893380 instance=ExtResource("1_x5dv4")]
+
+[node name="SR_Inventory" type="Node" parent="." index="2" unique_id=371164809 node_paths=PackedStringArray("root")]
+script = ExtResource("2_sl8pk")
+root = NodePath("..")
+private = true
+metadata/_custom_type_script = "uid://dayggrck4khl3"
+
+[node name="SR_InventorySlotSwitcher" type="Node" parent="SR_Inventory" index="0" unique_id=560255140 node_paths=PackedStringArray("inventory")]
+script = ExtResource("3_4uypb")
+inventory = NodePath("..")
+metadata/_custom_type_script = "uid://cq4xrj0ijwyea"

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="R_ViewModel" load_steps=2 format=3 uid="uid://v3tabj33plkk"]
+
+[ext_resource type="Script" uid="uid://c8xnsu3olqwmu" path="res://components/viewmodel/r_viewmodel.gd" id="1_lxfc5"]
+
+[resource]
+script = ExtResource("1_lxfc5")
+metadata/_custom_type_script = "uid://c8xnsu3olqwmu"

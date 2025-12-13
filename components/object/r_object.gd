@@ -11,6 +11,9 @@ static var _reference_list: Array[R_Object] = []
 func get_default_tab() -> R_Tab:
 	return R_Tab.get_default()
 
+static func get_placeholder() -> R_Object:
+	return find_by_id("debug.placeholder")
+
 static func get_references() -> Dictionary[String, R_Object]:
 	return _references
 
