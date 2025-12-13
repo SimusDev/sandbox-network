@@ -7,6 +7,33 @@ var _channel: String = SimusNetChannels.DEFAULT
 var _transfer_mode: SimusNetRPC.TRANSFER_MODE = SimusNetRPC.TRANSFER_MODE.RELIABLE
 
 var unique_id: int = -1
+var unique_id_bytes: PackedByteArray
+
+var is_ready: bool = false
+signal on_ready()
+
+var callable: Callable
+
+#//////////////////////////////////////////////////////////////
+
+func _initialize(handler: SimusNetRPCConfigHandler, callable: Callable) -> void:
+	self.callable = callable
+	
+	_handler = handler
+	
+	handler._list.set(callable, self)
+	
+	SimusNetMethods.cache(callable)
+	unique_id_bytes = await SimusNetMethods.serialize(callable)
+	unique_id = SimusNetMethods.get_id(callable)
+	
+	handler._list_by_unique_id.set(unique_id, self)
+	
+	is_ready = true
+	on_ready.emit()
+	
+
+#//////////////////////////////////////////////////////////////
 
 static func try_find_in(callable: Callable) -> SimusNetRPCConfig:
 	var handler: SimusNetRPCConfigHandler = SimusNetRPCConfigHandler.get_or_create(callable.get_object())
@@ -14,9 +41,8 @@ static func try_find_in(callable: Callable) -> SimusNetRPCConfig:
 
 static func _append_to(callable: Callable, config: SimusNetRPCConfig) -> void:
 	var handler: SimusNetRPCConfigHandler = SimusNetRPCConfigHandler.get_or_create(callable.get_object())
-	config._handler = handler
-	handler._list[callable] = config
-	config.unique_id = handler._list.size() - 1
+	config._initialize(handler, callable)
+
 
 #//////////////////////////////////////////////////////////////
 
@@ -54,4 +80,7 @@ func flag_set_reliable() -> SimusNetRPCConfig:
 #//////////////////////////////////////////////////////////////
 
 func _validate() -> bool:
+	if !is_ready:
+		await on_ready
+	
 	return true

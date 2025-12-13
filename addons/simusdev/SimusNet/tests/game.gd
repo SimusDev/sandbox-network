@@ -2,17 +2,25 @@ extends Node2D
 
 @export var objects: Array[SimusNetObject]
 
+var _test: Dictionary[int, SimusNetIdentity] = {}
+
 func _ready() -> void:
 	for i in objects:
 		i.create_instance()
 	
 	SimusNetEvents.event_active_status_changed.listen(_active_status_changed)
 	
-	#SimusNetRPC.register([_test_rpc])
+	SimusNetRPC.register([_test_rpc])
+
+func _process_identity(i: SimusNetIdentity) -> void:
+	pass
 
 func _on_timer_timeout() -> void:
 	if SimusNetConnection.is_server():
-		SimusNetRPC.invoke_all(_test_rpc)
+		var b: PackedByteArray = PackedByteArray()
+		b.resize(1)
+		b.encode_u8(0, 10)
+		SimusNetRPC.invoke(_test_rpc, b)
 
 func _test_rpc() -> void:
 	print("recieved rpc from server!!!")

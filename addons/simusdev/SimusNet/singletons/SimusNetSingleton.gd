@@ -8,6 +8,7 @@ class_name SimusNetSingleton
 @export var channels: SimusNetChannels
 @export var connection: SimusNetConnection
 @export var handshake: SimusNetHandShake
+@export var methods: SimusNetMethods
 @export var RPC: SimusNetRPC
 
 var info: Node

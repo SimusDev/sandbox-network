@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwjfa54w1mwo5"]
+[gd_scene load_steps=10 format=3 uid="uid://cwjfa54w1mwo5"]
 
 [ext_resource type="Script" uid="uid://bkb3nl4sbix30" path="res://addons/simusdev/SimusNet/singletons/SimusNetSingleton.gd" id="1_6nds0"]
 [ext_resource type="Script" uid="uid://blgvoebv5j1yx" path="res://addons/simusdev/SimusNet/singletons/SimusNetCache.gd" id="2_qc26q"]
@@ -6,10 +6,11 @@
 [ext_resource type="Script" uid="uid://dq0hs106g58xm" path="res://addons/simusdev/SimusNet/singletons/SimusNetConnection.gd" id="4_qc1ra"]
 [ext_resource type="Script" uid="uid://dx1ggnf2fcfjs" path="res://addons/simusdev/SimusNet/events/SimusNetEvents.gd" id="5_3i2gk"]
 [ext_resource type="Script" uid="uid://cf18slr8p28s1" path="res://addons/simusdev/SimusNet/singletons/SimusNetHandShake.gd" id="6_h5gd7"]
+[ext_resource type="Script" uid="uid://22nubuf7jkle" path="res://addons/simusdev/SimusNet/singletons/SimusNetMethods.gd" id="7_iveyx"]
 [ext_resource type="Script" uid="uid://b1d3f8qui38ty" path="res://addons/simusdev/SimusNet/singletons/SimusNetRPC.gd" id="7_jxvxf"]
 [ext_resource type="Script" uid="uid://clove4axd8wav" path="res://addons/simusdev/SimusNet/singletons/SimusNetRPCProccessor.gd" id="8_iveyx"]
 
-[node name="SimusNetSingleton" type="Node" unique_id=1723475864 node_paths=PackedStringArray("events", "cache", "channels", "connection", "handshake", "RPC")]
+[node name="SimusNetSingleton" type="Node" unique_id=1723475864 node_paths=PackedStringArray("events", "cache", "channels", "connection", "handshake", "methods", "RPC")]
 process_mode = 4
 script = ExtResource("1_6nds0")
 events = NodePath("Events")
@@ -17,6 +18,7 @@ cache = NodePath("Cache")
 channels = NodePath("Channels")
 connection = NodePath("Connection")
 handshake = NodePath("HandShake")
+methods = NodePath("Methods")
 RPC = NodePath("RPC")
 
 [node name="Events" type="Node" parent="." unique_id=2137078033]
@@ -39,6 +41,10 @@ metadata/_custom_type_script = "uid://dq0hs106g58xm"
 script = ExtResource("6_h5gd7")
 metadata/_custom_type_script = "uid://cf18slr8p28s1"
 
+[node name="Methods" type="Node" parent="." unique_id=1732255533]
+script = ExtResource("7_iveyx")
+metadata/_custom_type_script = "uid://22nubuf7jkle"
+
 [node name="RPC" type="Node" parent="." unique_id=1679579853 node_paths=PackedStringArray("_processor")]
 script = ExtResource("7_jxvxf")
 _processor = NodePath("Proccessor")
@@ -49,16 +55,16 @@ script = ExtResource("8_iveyx")
 source = "
 #//////////////////////////////////////////////////////////////////////////////////////////////////
 @rpc(\"any_peer\", \"call_remote\", \"unreliable\", %s)
-func _rpc_0_%s(identity: PackedByteArray, method: PackedByteArray, args: Array = []) -> void:
-	_recieve(multiplayer.get_remote_sender_id(), %s, identity, method, args)
+func _rpc_0_%s(packet: PackedByteArray) -> void:
+	_recieve(multiplayer.get_remote_sender_id(), %s, packet)
 
 @rpc(\"any_peer\", \"call_remote\", \"unreliable_ordered\", %s)
-func _rpc_1_%s(identity: PackedByteArray, method: PackedByteArray, args: Array = []) -> void:
-	_recieve(multiplayer.get_remote_sender_id(), %s, identity, method, args)
+func _rpc_1_%s(packet: PackedByteArray) -> void:
+	_recieve(multiplayer.get_remote_sender_id(), %s, packet)
 
 @rpc(\"any_peer\", \"call_remote\", \"reliable\", %s)
-func _rpc_2%s(identity: PackedByteArray, method: PackedByteArray, args: Array = []) -> void:
-	_recieve(multiplayer.get_remote_sender_id(), %s, identity, method, args)
+func _rpc_2_%s(packet: PackedByteArray) -> void:
+	_recieve(multiplayer.get_remote_sender_id(), %s, packet)
 
 "
 metadata/_custom_type_script = "uid://clove4axd8wav"

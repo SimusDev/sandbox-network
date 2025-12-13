@@ -5,6 +5,7 @@ const MAX: int = 72
 
 enum BUILTIN {
 	HANDSHAKE = MAX,
+	CACHE,
 	REGISTER,
 	IDENTITY,
 }
@@ -26,6 +27,9 @@ static func get_id(channel: String) -> int:
 	if founded < 0:
 		founded = 0
 	return founded
+
+static func get_name_by_id(id: int) -> String:
+	return get_list().get(id)
 
 static func register(c_name: String) -> void:
 	if get_list().size() >= MAX:

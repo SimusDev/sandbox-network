@@ -140,8 +140,6 @@ func get_unique_id() -> int:
 	return _unique_id
 
 func serialize_unique_id() -> PackedByteArray:
-	if !is_ready:
-		await on_ready
 	return _bytes_unique_id
 
 static func deserialize_unique_id(bytes: PackedByteArray) -> SimusNetIdentity:
