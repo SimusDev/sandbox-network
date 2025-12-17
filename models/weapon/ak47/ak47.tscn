@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=4 uid="uid://dgriur3thykid"]
+[gd_scene format=4 uid="uid://dgriur3thykid"]
 
 [ext_resource type="Script" uid="uid://731cpyp8tjog" path="res://components/animation/sr_weapon_animator.gd" id="1_0bfep"]
 [ext_resource type="Texture2D" uid="uid://dvgdyumxjmxkl" path="res://models/weapon/ak47/textures/act_arm_perchatka_S_diffuse.png" id="1_x6m6q"]
 [ext_resource type="Texture2D" uid="uid://dowctye33ongm" path="res://models/weapon/ak47/textures/wpn_ak74_S_diffuse.png" id="2_0bfep"]
 [ext_resource type="Script" uid="uid://cuewlcb7a7eps" path="res://components/animation/r_animation_hook.gd" id="2_x010y"]
 [ext_resource type="Script" uid="uid://c56hfcaln3r2t" path="res://components/animation/r_animation_hook_signal.gd" id="3_82c6x"]
+[ext_resource type="Script" uid="uid://k8tylyeso1yc" path="res://components/animation/r_animation_hook_finite_state.gd" id="4_82c6x"]
 
 [sub_resource type="Resource" id="Resource_x010y"]
 script = ExtResource("3_82c6x")
@@ -23,6 +24,12 @@ script = ExtResource("3_82c6x")
 name = &"event_inspect"
 animation = &"Inspect"
 play_instant = null
+
+[sub_resource type="Resource" id="Resource_67oh5"]
+script = ExtResource("4_82c6x")
+name = &"walk"
+animation = &"Walk"
+metadata/_custom_type_script = "uid://k8tylyeso1yc"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4am3"]
 resource_name = "act_arm_perchatka_S"
@@ -1808,11 +1815,11 @@ _data = {
 &"Walk": SubResource("Animation_x18ds")
 }
 
-[node name="Sketchfab_Scene4" type="Node3D" unique_id=1555753663]
+[node name="animated_model" type="Node3D" unique_id=1555753663]
 
 [node name="SR_WeaponAnimator" type="Node" parent="." unique_id=291953756 node_paths=PackedStringArray("player")]
 script = ExtResource("1_0bfep")
-hooks = Array[ExtResource("2_x010y")]([SubResource("Resource_x010y"), SubResource("Resource_82c6x"), SubResource("Resource_06ujf")])
+hooks = Array[ExtResource("2_x010y")]([SubResource("Resource_x010y"), SubResource("Resource_82c6x"), SubResource("Resource_06ujf"), SubResource("Resource_67oh5")])
 player = NodePath("../AnimationPlayer")
 initialized = true
 metadata/_custom_type_script = "uid://731cpyp8tjog"
@@ -1999,7 +2006,7 @@ bones/23/parent = 22
 bones/23/rest = Transform3D(0.9153794, -0.32221678, -0.24136536, 0.35261866, 0.9309871, 0.094463326, 0.19427034, -0.17157966, 0.96582603, -6.9849193e-09, 0.17265677, -5.122274e-09)
 bones/23/enabled = true
 bones/23/position = Vector3(-6.9849193e-09, 0.17265677, -5.122274e-09)
-bones/23/rotation = Quaternion(-0.14129587, -0.14173374, 0.25940707, 0.9448043)
+bones/23/rotation = Quaternion(-0.14129587, -0.14173375, 0.25940704, 0.94480425)
 bones/23/scale = Vector3(1.0000001, 1.0000001, 1.0000002)
 bones/24/name = "forearm_r_016"
 bones/24/parent = 23
@@ -2188,7 +2195,7 @@ bones/50/parent = 49
 bones/50/rest = Transform3D(-0.3989898, 0.9062226, -0.13988832, 0.06560468, 0.18037853, 0.9814072, 0.9146058, 0.3823941, -0.13142155, 1.4901161e-08, 0.25750357, 2.6077032e-08)
 bones/50/enabled = true
 bones/50/position = Vector3(1.4901161e-08, 0.25750357, 2.6077032e-08)
-bones/50/rotation = Quaternion(0.3916791, 0.62814105, 0.5496579, -0.38717243)
+bones/50/rotation = Quaternion(0.39167908, 0.62814105, 0.54965794, -0.3871724)
 bones/50/scale = Vector3(1.0000002, 1.0000005, 1.0000002)
 bones/51/name = "hand_l_00"
 bones/51/parent = 50
@@ -2444,6 +2451,4 @@ transform = Transform3D(1.7881395e-05, 5.024296e-13, 100, 0, 100, -5.024296e-13,
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=731827484]
 callback_mode_process = 0
-libraries = {
-&"": SubResource("AnimationLibrary_x6m6q")
-}
+libraries/ = SubResource("AnimationLibrary_x6m6q")

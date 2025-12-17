@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://fl2cplwq55e4"]
+[gd_scene format=3 uid="uid://fl2cplwq55e4"]
 
 [ext_resource type="PackedScene" uid="uid://doq5n3yx8d5sf" path="res://ui/player/world_object_spawner.tscn" id="1_6se75"]
 
@@ -41,7 +41,12 @@ visible = false
 layout_mode = 1
 
 [node name="Hotbar" type="Control" parent="." unique_id=844496242]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = SubResource("GDScript_6se75")

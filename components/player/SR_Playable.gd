@@ -14,7 +14,7 @@ var active: bool = false
 
 var network: SD_NetworkPlayer
 
-static var _local: SR_Playable
+
 
 func is_local() -> bool:
 	return network == SD_NetworkPlayer.get_local()
@@ -60,11 +60,11 @@ func _exit_tree() -> void:
 static func find_above(_node:Node) -> SR_Playable:
 	return null
 
-static func get_local() -> SR_Playable:
-	return _local
-
-func is_local() -> bool:
-	return self == get_local()
+#static func get_local() -> SR_Playable:
+	#return _local
+#
+#func is_local() -> bool:
+	#return self == get_local()
 
 #test govna. remove this method next time
 func _on_commands_on_executed(command: SD_ConsoleCommand) -> void:

@@ -5,8 +5,11 @@ class_name R_AnimationHookFiniteState
 
 func init() -> void:
 	var machine: SD_FiniteStateMachine = target as SD_FiniteStateMachine
-	machine.get_state_by_name(name).on_enter.connect(apply)
-	
+	if is_instance_valid(machine):
+		if (not machine.is_node_ready()):
+			await machine.ready
+		
+		machine.get_state_by_name(name).on_enter.connect(apply)
 
 static func create(state_name: String) -> R_AnimationHookFiniteState:
 	var a := R_AnimationHookFiniteState.new()

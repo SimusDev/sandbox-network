@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="R_Sound3D" load_steps=6 format=3 uid="uid://blyqwyt4pvbph"]
+[gd_resource type="Resource" script_class="R_Sound3D" format=3 uid="uid://blyqwyt4pvbph"]
 
-[ext_resource type="Texture2D" uid="uid://4x51hbmje0si" path="res://addons/simusdev/icons/AudioStreamWAV.svg" id="1_jffen"]
 [ext_resource type="Script" uid="uid://d2e1osl75ausn" path="res://components/sound/r_soundpack3d.gd" id="1_l44re"]
 [ext_resource type="AudioStream" uid="uid://cjpnpy0r22stv" path="res://audio/weapon/ak47/fire_0.mp3" id="2_jffen"]
 [ext_resource type="Script" uid="uid://otcno374t1sp" path="res://components/sound/r_sound3d.gd" id="3_ugeo4"]
@@ -16,5 +15,4 @@ metadata/_custom_type_script = "uid://d2e1osl75ausn"
 resource_name = "ak47_fire_sound"
 script = ExtResource("3_ugeo4")
 pack = Array[ExtResource("1_l44re")]([SubResource("Resource_6043a")])
-icon = ExtResource("1_jffen")
 metadata/_custom_type_script = "uid://otcno374t1sp"

@@ -5,7 +5,7 @@ class_name R_WorldObject
 @export var viewmodel: R_ViewModel = null
 
 @export_group("ItemStack")
-@export var itemstack: SR_ItemStackSettings = null : get = get_itemstack
+@export var itemstack: SR_ItemStackSettings = null #: get = get_itemstack
 
 func get_prefab() -> PackedScene:
 	return prefab

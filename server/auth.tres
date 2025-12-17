@@ -1,7 +1,13 @@
-[gd_resource type="Resource" script_class="SR_ServerAuthData" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="SR_ServerAuthData" format=3]
 
 [ext_resource type="Script" path="res://components/data/sr_server_auth_data.gd" id="1_bl1o6"]
 [ext_resource type="Script" path="res://components/data/r_user_data.gd" id="2_m72nh"]
 
+[sub_resource type="Resource" id="Resource_bl1o6"]
+script = ExtResource("2_m72nh")
+name = "user"
+password = "sex"
+
 [resource]
 script = ExtResource("1_bl1o6")
+users = Array[ExtResource("2_m72nh")]([SubResource("Resource_bl1o6")])

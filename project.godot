@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SandboxNetwork"
-run/main_scene="uid://jofeluedcubq"
+run/main_scene="uid://c3u4lormvp8fe"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://doynt3owgl3bc"
 
@@ -21,7 +21,7 @@ SimusDev="*uid://dnpa241s8gwqq"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SunshineClouds2/plugin.cfg", "res://addons/ai_assistant_hub/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/SunshineClouds2/plugin.cfg", "res://addons/simusdev/plugin.cfg", "res://addons/sky_3d/plugin.cfg")
 
 [file_customization]
 
@@ -103,16 +103,7 @@ chat={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Entity"
 3d_physics/layer_3="Zone"
-3d_physics/layer_4="Projectile"
-3d_physics/layer_5="Hitbox"
 
 [physics]
 
 common/physics_interpolation=true
-
-[plugins]
-
-ai_assistant_hub/llm_api="gemini_api"
-ai_assistant_hub/preferences/thinking_target=0
-ai_assistant_hub/preferences/skip_greeting=false
-ai_assistant_hub/preferences/always_scroll_to_bottom=false

@@ -1,14 +1,22 @@
-[gd_resource type="Resource" script_class="R_Weapon" load_steps=5 format=3 uid="uid://ls55oo7ysu22"]
+[gd_resource type="Resource" script_class="R_WeaponProjectile" format=3 uid="uid://ls55oo7ysu22"]
 
 [ext_resource type="Texture2D" uid="uid://beda6yqrsg62j" path="res://weapon/gun/icon.png" id="1_g0kjg"]
-[ext_resource type="Script" uid="uid://btheenv6x1p6b" path="res://components/weapon/r_weapon.gd" id="1_ifyfa"]
+[ext_resource type="Script" uid="uid://btheenv6x1p6b" path="res://components/weapon/r_weapon_projectile.gd" id="1_ifyfa"]
 [ext_resource type="Resource" uid="uid://bbiwfc1ysehud" path="res://objects/projectiles/rifle_projectile.tres" id="1_wiw74"]
+[ext_resource type="PackedScene" uid="uid://dsfuq3o30yeir" path="res://weapon/ak47/weapon.tscn" id="2_nngb4"]
 [ext_resource type="Resource" uid="uid://blyqwyt4pvbph" path="res://objects/sounds/weapon/ak47/ak47_fire_sound.tres" id="3_wiw74"]
+[ext_resource type="Script" uid="uid://c8xnsu3olqwmu" path="res://components/viewmodel/r_viewmodel.gd" id="6_xa43v"]
+
+[sub_resource type="Resource" id="Resource_irg8p"]
+script = ExtResource("6_xa43v")
+metadata/_custom_type_script = "uid://c8xnsu3olqwmu"
 
 [resource]
 resource_name = "ak47"
 script = ExtResource("1_ifyfa")
 projectile = ExtResource("1_wiw74")
 sound_fire = ExtResource("3_wiw74")
+prefab = ExtResource("2_nngb4")
+viewmodel = SubResource("Resource_irg8p")
 icon = ExtResource("1_g0kjg")
 metadata/_custom_type_script = "uid://btheenv6x1p6b"

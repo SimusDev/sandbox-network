@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://dk45eqctyampm"]
+[gd_scene format=3 uid="uid://dk45eqctyampm"]
 
-[ext_resource type="PackedScene" uid="uid://t62b665bvj0s" path="res://prefabs/npc/sr_human.tscn" id="1_6y6mw"]
+[ext_resource type="PackedScene" uid="uid://t62b665bvj0s" path="res://prefabs/npc/sr_stalker.tscn" id="1_6y6mw"]
 [ext_resource type="Script" uid="uid://dylvk0a6ks12x" path="res://components/player/SR_Playable.gd" id="2_fc3xa"]
 [ext_resource type="Script" uid="uid://38osx81mny15" path="res://addons/simusdev/console/SD_NodeConsoleCommands.gd" id="2_h5nho"]
 [ext_resource type="Script" uid="uid://bptu8uuecjoc5" path="res://addons/simusdev/console/SD_NodeCommandObject.gd" id="3_74ym1"]
@@ -8,11 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://dgmj4cxp8xi62" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCrouch.tscn" id="4_3611e"]
 [ext_resource type="Script" uid="uid://mtgs568pxn5x" path="res://addons/simusdev/console/SD_NodeCommandObjectBind.gd" id="4_y8bwe"]
 [ext_resource type="PackedScene" uid="uid://bb30gdt6q8ij" path="res://addons/simusdev/components/fp_controller/source_like/W_FPCSourceLikeCamera.tscn" id="5_3611e"]
-[ext_resource type="PackedScene" uid="uid://c4ycqga2odxtc" path="res://weapon/gun/gun.tscn" id="10_h5nho"]
 [ext_resource type="Script" uid="uid://cp5hfswiyi4g0" path="res://addons/simusdev/network/SD_NetworkTransform.gd" id="10_y8bwe"]
 [ext_resource type="Script" uid="uid://cacpikkbdlubj" path="res://components/ui/mp_canvas.gd" id="11_evg7k"]
 [ext_resource type="Script" uid="uid://bj11a8fjqjato" path="res://components/viewmodel/viewmodel_root3d.gd" id="11_y8bwe"]
 [ext_resource type="PackedScene" uid="uid://fl2cplwq55e4" path="res://ui/player/player_ui.tscn" id="12_74ym1"]
+[ext_resource type="Resource" uid="uid://v3tabj33plkk" path="res://components/viewmodel/default.tres" id="12_kkojp"]
+[ext_resource type="PackedScene" uid="uid://dsfuq3o30yeir" path="res://weapon/ak47/weapon.tscn" id="12_u71b1"]
 [ext_resource type="PackedScene" uid="uid://cytxvvulkl1my" path="res://models/human/sviter/model.tscn" id="13_y8bwe"]
 
 [sub_resource type="Resource" id="Resource_ht26s"]
@@ -82,35 +83,37 @@ key_right = "move_right"
 key_boost = "sprint"
 key_slowdown = "crouch"
 
-[node name="gun" parent="Camera" index="1" unique_id=136496866 node_paths=PackedStringArray("entity") instance=ExtResource("10_h5nho")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.02, 0.495)
-entity = NodePath("../..")
-
-[node name="ViewModelRoot3D" type="Node3D" parent="Camera" index="3" unique_id=1542211132]
-script = ExtResource("11_y8bwe")
-type = 0
-metadata/_custom_type_script = "uid://bj11a8fjqjato"
-[node name="SD_NetworkTransform" type="Node" parent="Camera" index="2" unique_id=731526615 node_paths=PackedStringArray("node")]
+[node name="SD_NetworkTransform" type="Node" parent="Camera" index="1" unique_id=731526615 node_paths=PackedStringArray("node")]
 script = ExtResource("10_y8bwe")
 node = NodePath("..")
 _editor_initialize = true
 metadata/_custom_type_script = "uid://cp5hfswiyi4g0"
+
+[node name="ViewModelRoot3D" type="Node3D" parent="Camera" index="2" unique_id=1542211132]
+script = ExtResource("11_y8bwe")
+type = 0
+placeholder = ExtResource("12_kkojp")
+metadata/_custom_type_script = "uid://bj11a8fjqjato"
+
+[node name="ak47" parent="Camera" index="3" unique_id=10701622 node_paths=PackedStringArray("entity") instance=ExtResource("12_u71b1")]
+transform = Transform3D(0.9953962, 0, -0.09584575, 0, 1, 0, 0.09584575, 0, 0.9953962, 0.115, -0.245, 0.08)
+entity = NodePath("../..")
 
 [node name="crouch_pos" type="Node3D" parent="." index="8" unique_id=2117828044]
 
 [node name="ceilling_detection" type="RayCast3D" parent="." index="9" unique_id=675193938]
 target_position = Vector3(0, 1, 0)
 
-[node name="SR_Inventory" parent="." index="12" unique_id=371164809 node_paths=PackedStringArray("root")]
-root = NodePath("..")
-private = true
+[node name="SR_LivingEntity" parent="." index="10" unique_id=123198333 node_paths=PackedStringArray("inventory")]
+inventory = NodePath("../SR_Inventory")
 
-[node name="MP_CanvasLayer" type="CanvasLayer" parent="." index="13" unique_id=571300044]
+[node name="Model" parent="." index="13" unique_id=1906016949 instance=ExtResource("13_y8bwe")]
+visible = false
+
+[node name="MP_CanvasLayer" type="CanvasLayer" parent="." index="14" unique_id=571300044]
 script = ExtResource("11_evg7k")
 scene = ExtResource("12_74ym1")
 metadata/_custom_type_script = "uid://cacpikkbdlubj"
-
-[node name="Model" parent="." index="13" unique_id=1906016949 instance=ExtResource("13_y8bwe")]
 
 [connection signal="on_executed" from="commands" to="playable" method="_on_commands_on_executed"]
 

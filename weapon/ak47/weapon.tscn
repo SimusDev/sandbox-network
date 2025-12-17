@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dsfuq3o30yeir"]
+
+[ext_resource type="Script" uid="uid://doewumcc5625k" path="res://components/weapon/sr_item_weapon_projectile.gd" id="1_cwvja"]
+[ext_resource type="PackedScene" uid="uid://dgriur3thykid" path="res://models/weapon/ak47/ak47.tscn" id="2_0kb7f"]
+
+[node name="ak47" type="Node3D" unique_id=10701622]
+script = ExtResource("1_cwvja")
+metadata/_custom_type_script = "uid://doewumcc5625k"
+
+[node name="animated_model" parent="." unique_id=1555753663 instance=ExtResource("2_0kb7f")]
